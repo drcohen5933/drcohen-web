@@ -930,11 +930,11 @@ const ProductDetail: React.FC<PageProps> = ({ setPage, selectedProductId }) => {
             <button 
               onClick={() => {
                 if (product.id === 'egf-cream') {
-                  window.open('https://smartstore.naver.com/drcohen/products/10100254748', '_blank', 'noopener,noreferrer');
+                  window.open('https://m.smartstore.naver.com/drcohen/products/10100254748', '_blank', 'noopener,noreferrer');
                 } else if (product.id === 'egf-serum') {
-                  window.open('https://smartstore.naver.com/drcohen/products/10100289480', '_blank', 'noopener,noreferrer');
+                  window.open('https://m.smartstore.naver.com/drcohen/products/10100289480', '_blank', 'noopener,noreferrer');
                 } else if (product.id === 'sun-serum') {
-                  window.open('https://smartstore.naver.com/drcohen/products/11963043290', '_blank', 'noopener,noreferrer');
+                  window.open('https://m.smartstore.naver.com/drcohen/products/11963043290', '_blank', 'noopener,noreferrer');
                 }
               }}
               className="w-full py-5 bg-brand-ink text-brand-white text-[11px] tracking-[0.3em] uppercase hover:bg-brand-accent transition-all cursor-none mt-4"
