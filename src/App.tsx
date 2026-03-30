@@ -929,24 +929,29 @@ const ProductDetail: React.FC<PageProps> = ({ setPage, selectedProductId }) => {
             
             <button 
               onClick={() => {
-                if (product.id === 'egf-cream') {
-  const a = document.createElement('a');
-  a.href = 'https://bit.ly/4sFXakX';
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  a.click();
+                // 1. 카카오톡인지 확인하고, 맞으면 사파리/크롬으로 강제 탈출시키는 기능
+const openLink = (url) => {
+  const isKakao = navigator.userAgent.toLowerCase().includes('kakaotalk');
+  if (isKakao) {
+    // 카카오톡일 경우 강제로 외부 브라우저(사파리/크롬)로 열기
+    window.location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(url);
+  } else {
+    // 카카오톡이 아닐 경우 (일반 사파리, 크롬, PC 등) 투명 링크로 새 창 열기
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.click();
+  }
+};
+
+// 2. 상품별로 주소 연결하기
+if (product.id === 'egf-cream') {
+  openLink('https://bit.ly/4sFXakX');
 } else if (product.id === 'egf-serum') {
-  const a = document.createElement('a');
-  a.href = 'https://bit.ly/4cc1l22';
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  a.click();
+  openLink('https://bit.ly/4cc1l22');
 } else if (product.id === 'sun-serum') {
-  const a = document.createElement('a');
-  a.href = 'https://bit.ly/4cdTAZq';
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  a.click();
+  openLink('https://bit.ly/4cdTAZq');
 }
               }}
               className="w-full py-5 bg-brand-ink text-brand-white text-[11px] tracking-[0.3em] uppercase hover:bg-brand-accent transition-all cursor-none mt-4"
