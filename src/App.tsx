@@ -947,11 +947,11 @@ const openLink = (url) => {
 
 // 2. 상품별로 주소 연결하기
 if (product.id === 'egf-cream') {
-  openLink('https://bit.ly/4sFXakX');
+  openLink('https://smartstore.naver.com/drcohen/products/10100254748');
 } else if (product.id === 'egf-serum') {
-  openLink('https://bit.ly/4cc1l22');
+  openLink('https://smartstore.naver.com/drcohen/products/10100289480');
 } else if (product.id === 'sun-serum') {
-  openLink('https://bit.ly/4cdTAZq');
+  openLink('https://smartstore.naver.com/drcohen/products/11963043290');
 }
               }}
               className="w-full py-5 bg-brand-ink text-brand-white text-[11px] tracking-[0.3em] uppercase hover:bg-brand-accent transition-all cursor-none mt-4"
