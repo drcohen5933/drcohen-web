@@ -930,12 +930,24 @@ const ProductDetail: React.FC<PageProps> = ({ setPage, selectedProductId }) => {
             <button 
               onClick={() => {
                 if (product.id === 'egf-cream') {
-                  window.open('https://bit.ly/4sFXakX', '_blank', 'noopener,noreferrer');
-                } else if (product.id === 'egf-serum') {
-                  window.open('https://bit.ly/4cc1l22', '_blank', 'noopener,noreferrer');
-                } else if (product.id === 'sun-serum') {
-                  window.open('https://bit.ly/4cdTAZq', '_blank', 'noopener,noreferrer');
-                }
+  const a = document.createElement('a');
+  a.href = 'https://bit.ly/4sFXakX';
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.click();
+} else if (product.id === 'egf-serum') {
+  const a = document.createElement('a');
+  a.href = 'https://bit.ly/4cc1l22';
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.click();
+} else if (product.id === 'sun-serum') {
+  const a = document.createElement('a');
+  a.href = 'https://bit.ly/4cdTAZq';
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.click();
+}
               }}
               className="w-full py-5 bg-brand-ink text-brand-white text-[11px] tracking-[0.3em] uppercase hover:bg-brand-accent transition-all cursor-none mt-4"
             >
