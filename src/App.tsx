@@ -930,11 +930,11 @@ const ProductDetail: React.FC<PageProps> = ({ setPage, selectedProductId }) => {
             <button 
               onClick={() => {
                 if (product.id === 'egf-cream') {
-                  window.open('https://https://bit.ly/4sFXakX', '_blank', 'noopener,noreferrer');
+                  window.open('a href=https://https://bit.ly/4sFXakX', '_blank', 'noopener,noreferrer');
                 } else if (product.id === 'egf-serum') {
-                  window.open('https://https://bit.ly/4cc1l22', '_blank', 'noopener,noreferrer');
+                  window.open('a href=https://https://bit.ly/4cc1l22', '_blank', 'noopener,noreferrer');
                 } else if (product.id === 'sun-serum') {
-                  window.open('https://https://bit.ly/4cdTAZq', '_blank', 'noopener,noreferrer');
+                  window.open('a href=https://https://bit.ly/4cdTAZq', '_blank', 'noopener,noreferrer');
                 }
               }}
               className="w-full py-5 bg-brand-ink text-brand-white text-[11px] tracking-[0.3em] uppercase hover:bg-brand-accent transition-all cursor-none mt-4"
