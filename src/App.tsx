@@ -119,6 +119,11 @@ const PRODUCTS: Product[] = [
     originalPrice: '58,000',
     discount: '17%',
     image: creamMainImg,
+    subImages: [
+      '/cream1.jpeg', '/cream2.jpeg', '/cream3.jpeg', '/cream4.jpeg',
+      '/cream5.jpeg', '/cream6.jpeg', '/cream7.jpeg', '/cream8.jpeg',
+      '/cream9.jpeg', '/cream10.jpeg'
+    ],
     details: [
       '사용부위 : 팔자주름, 페이스용',
       '피부타입 : 모든피부용',
@@ -136,6 +141,11 @@ const PRODUCTS: Product[] = [
     originalPrice: '58,000',
     discount: '17%',
     image: '/serum_main.png',
+    subImages: [
+      '/serum01.jpeg', '/serum02.jpeg', '/serum03.jpeg', '/serum04.jpeg',
+      '/serum05.jpeg', '/serum06.jpeg', '/serum07.jpeg', '/serum08.jpeg',
+      '/serum09.jpeg', '/serum10.jpeg'
+    ],
     details: [
       '사용부위 : 팔자주름, 페이스용',
       '피부타입 : 모든피부용',
@@ -328,7 +338,7 @@ const Footer = () => (
         고객센터
       </a>
     </div>
-    <span className="text-[11px] font-medium text-brand-stone uppercase opacity-60 tracking-widest">© 2025 DR. Cohen. All Rights Reserved.</span>
+    <span className="text-[11px] font-medium text-brand-stone uppercase opacity-60 tracking-widest">© 2026 DR. Cohen. All Rights Reserved.</span>
   </footer>
 );
 
@@ -771,7 +781,7 @@ const NewsDetail: React.FC<PageProps> = ({ setPage, selectedNewsId }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="pt-[60px] bg-white"
+      className="pt-[60px] bg-white relative"
     >
       {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
@@ -1408,6 +1418,107 @@ const StatCard = ({ num, label }: { num: string, label: string }) => (
 
 const ProductDetail: React.FC<PageProps> = ({ setPage, selectedProductId }) => {
   const product = PRODUCTS.find(p => p.id === selectedProductId);
+  
+  if (!product) return null;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      className="pt-[60px] relative"
+    >
+      <div className="max-w-7xl mx-auto px-0 md:px-10 py-12 border-b border-brand-stone/40">
+        <div className="px-10 md:px-0">
+          <button 
+            onClick={() => setPage?.('best')}
+            className="text-[12px] tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none mb-12"
+          >
+            ← BEST로 돌아가기
+          </button>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-24 items-start">
+          {/* Product Info - Appears first on mobile, second on desktop */}
+          <div className="flex flex-col gap-12 px-10 lg:px-0 lg:sticky lg:top-32 self-start lg:order-2">
+            <div>
+              <p className="text-[12px] tracking-[0.3em] uppercase text-brand-accent mb-4">{product.line}</p>
+              <h1 className="font-bold text-[32px] lg:text-[42px] leading-tight text-brand-ink tracking-tight mb-6">{product.name}</h1>
+              <p className="text-[16px] text-brand-ink-light leading-relaxed whitespace-pre-line">{product.desc}</p>
+            </div>
+            
+            <div className="flex items-baseline gap-4 border-y border-brand-stone/40 py-8">
+              <p className="text-[24px] tracking-[0.06em] text-brand-ink font-medium">₩ {product.price}</p>
+              {product.originalPrice && <p className="text-[16px] text-brand-stone line-through">₩ {product.originalPrice}</p>}
+              {product.discount && <p className="text-[16px] text-brand-accent font-semibold">{product.discount}</p>}
+            </div>
+            
+            <button 
+              onClick={() => {
+                if (product.id === 'egf-cream') {
+                  window.open('https://smartstore.naver.com/drcohen/products/10100254748', '_blank', 'noopener,noreferrer');
+                } else if (product.id === 'egf-serum') {
+                  window.open('https://smartstore.naver.com/drcohen/products/10100289480', '_blank', 'noopener,noreferrer');
+                } else if (product.id === 'sun-serum') {
+                  window.open('https://smartstore.naver.com/drcohen/products/11963043290', '_blank', 'noopener,noreferrer');
+                }
+              }}
+              className="w-full py-6 bg-brand-ink text-brand-white text-[12px] tracking-[0.3em] uppercase hover:bg-brand-accent transition-all cursor-none mt-4"
+            >
+              {['egf-cream', 'egf-serum', 'sun-serum'].includes(product.id) ? '네이버에서 구매하기' : '장바구니 담기'}
+            </button>
+          </div>
+
+          {/* Product Images - Appears second on mobile, first on desktop */}
+          <div className="flex flex-col items-center w-full lg:order-1">
+            <div className="flex items-center justify-center w-full mb-20">
+              {product.image ? (
+                <img 
+                  src={product.image} 
+                  className="w-full max-w-[500px] h-auto object-contain" 
+                  alt={product.name} 
+                  referrerPolicy="no-referrer" 
+                />
+              ) : (
+                <div className="bg-brand-card aspect-square w-full flex items-center justify-center p-24 border border-brand-stone/40">
+                  <svg viewBox="0 0 100 200" fill="none" className="h-[480px]">
+                    <rect x="30" y="10" width="40" height="5" rx="2.5" fill="#C8C4B8"/>
+                    <path d="M28 20 L25 180 Q25 188 50 188 Q75 188 75 180 L72 20Z" fill="#E0DDD6"/>
+                    <text x="50" y="95" textAnchor="middle" fontFamily="serif" fontSize="6" fill="#2B3D2A" letterSpacing="1.5">DR. COHEN</text>
+                    <text x="50" y="108" textAnchor="middle" fontFamily="sans-serif" fontSize="4" fill="#6B7D6A" letterSpacing="1">{product.line.includes('EGF') ? 'EGF' : 'SUN'}</text>
+                  </svg>
+                </div>
+              )}
+            </div>
+
+            {product.subImages && product.subImages.length > 0 && (
+              <div className="w-full flex flex-col items-center">
+                {product.subImages.map((img, index) => (
+                  <img 
+                    key={index}
+                    src={img} 
+                    className="w-full h-auto" 
+                    alt={`${product.name} 상세 정보 ${index + 1}`} 
+                    referrerPolicy="no-referrer" 
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      
+      <Footer />
+    </motion.div>
+  );
+};
+
+export default function App() {
+  const [page, setPage] = useState<Page>('home');
+  const [bestTab, setBestTab] = useState<'egf' | 'sun'>('egf');
+  const [aboutTab, setAboutTab] = useState<'story' | 'value'>('story');
+  const [selectedProductId, setSelectedProductId] = useState<string>('');
+  const [selectedNewsId, setSelectedNewsId] = useState<string>('');
   const [showTopBtn, setShowTopBtn] = useState(false);
 
   useEffect(() => {
@@ -1429,143 +1540,6 @@ const ProductDetail: React.FC<PageProps> = ({ setPage, selectedProductId }) => {
       behavior: 'smooth'
     });
   };
-  
-  if (!product) return null;
-
-  return (
-    <motion.div 
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      className="pt-[60px] relative"
-    >
-      <AnimatePresence>
-        {showTopBtn && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            onClick={scrollToTop}
-            className="fixed bottom-12 right-12 z-[100] w-16 h-16 bg-brand-ink text-brand-white rounded-full flex items-center justify-center shadow-2xl hover:bg-brand-accent transition-all cursor-none"
-            aria-label="상단으로 이동"
-          >
-            <ArrowUp size={20} />
-          </motion.button>
-        )}
-      </AnimatePresence>
-      <div className="max-w-7xl mx-auto px-0 md:px-10 py-12 border-b border-brand-stone/40">
-        <div className="px-10 md:px-0">
-          <button 
-            onClick={() => setPage?.('best')}
-            className="text-[12px] tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none mb-12"
-          >
-            ← BEST로 돌아가기
-          </button>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-12">
-          <div className="flex items-start justify-center w-full lg:sticky lg:top-24">
-            {product.image ? (
-              <img 
-                src={product.image} 
-                className="w-full max-w-[500px] h-auto max-h-[85vh] object-contain" 
-                alt={product.name} 
-                referrerPolicy="no-referrer" 
-              />
-            ) : (
-              <div className="bg-brand-card aspect-square w-full flex items-center justify-center p-24 border border-brand-stone/40">
-                <svg viewBox="0 0 100 200" fill="none" className="h-[480px]">
-                  <rect x="30" y="10" width="40" height="5" rx="2.5" fill="#C8C4B8"/>
-                  <path d="M28 20 L25 180 Q25 188 50 188 Q75 188 75 180 L72 20Z" fill="#E0DDD6"/>
-                  <text x="50" y="95" textAnchor="middle" fontFamily="serif" fontSize="6" fill="#2B3D2A" letterSpacing="1.5">DR. COHEN</text>
-                  <text x="50" y="108" textAnchor="middle" fontFamily="sans-serif" fontSize="4" fill="#6B7D6A" letterSpacing="1">{product.line.includes('EGF') ? 'EGF' : 'SUN'}</text>
-                </svg>
-              </div>
-            )}
-          </div>
-          
-          <div className="flex flex-col gap-12 px-10 lg:px-0">
-            <div>
-              <p className="text-[12px] tracking-[0.3em] uppercase text-brand-accent mb-4">{product.line}</p>
-              <h1 className="font-bold text-[clamp(40px,5vw,64px)] leading-tight text-brand-ink tracking-tight mb-6">{product.name}</h1>
-              <p className="text-[16px] text-brand-ink-light leading-relaxed whitespace-pre-line">{product.desc}</p>
-            </div>
-            
-            <div className="flex items-baseline gap-4 border-y border-brand-stone/40 py-8">
-              <p className="text-[24px] tracking-[0.06em] text-brand-ink font-medium">₩ {product.price}</p>
-              {product.originalPrice && <p className="text-[16px] text-brand-stone line-through">₩ {product.originalPrice}</p>}
-              {product.discount && <p className="text-[16px] text-brand-accent font-semibold">{product.discount}</p>}
-            </div>
-            
-            <div className="flex flex-col gap-6">
-              <p className="text-[12px] tracking-[0.2em] uppercase text-brand-ink font-semibold">제품 상세 정보</p>
-              <ul className="flex flex-col gap-4">
-                {product.details.map((detail, i) => (
-                  <li key={i} className="text-[16px] text-brand-ink-light flex gap-4">
-                    <span className="text-brand-accent">•</span>
-                    {detail}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <button 
-              onClick={() => {
-                if (product.id === 'egf-cream') {
-                  window.open('https://smartstore.naver.com/drcohen/products/10100254748', '_blank', 'noopener,noreferrer');
-                } else if (product.id === 'egf-serum') {
-                  window.open('https://smartstore.naver.com/drcohen/products/10100289480', '_blank', 'noopener,noreferrer');
-                } else if (product.id === 'sun-serum') {
-                  window.open('https://smartstore.naver.com/drcohen/products/11963043290', '_blank', 'noopener,noreferrer');
-                }
-              }}
-              className="w-full py-6 bg-brand-ink text-brand-white text-[12px] tracking-[0.3em] uppercase hover:bg-brand-accent transition-all cursor-none mt-4"
-            >
-              {['egf-cream', 'egf-serum', 'sun-serum'].includes(product.id) ? '네이버에서 구매하기' : '장바구니 담기'}
-            </button>
-          </div>
-        </div>
-
-        {product.subImages && product.subImages.length > 0 && (
-          <div className="mt-32 w-full flex flex-col items-center">
-            {product.subImages.map((img, index) => (
-              <img 
-                key={index}
-                src={img} 
-                className="w-full max-w-[700px] h-auto" 
-                alt={`${product.name} 상세 정보 ${index + 1}`} 
-                referrerPolicy="no-referrer" 
-              />
-            ))}
-          </div>
-        )}
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-10 py-24">
-        <h3 className="font-bold text-[32px] mb-12 text-brand-ink">관련 리뷰</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="border-l-2 border-brand-accent pl-8 py-4">
-            <p className="text-[16px] text-brand-ink mb-4">"피부 장벽이 튼튼해진 게 느껴져요. 인생 아이템입니다."</p>
-            <p className="text-[12px] tracking-[0.1em] text-brand-ink-light uppercase">김*은 — Verified Buyer</p>
-          </div>
-          <div className="border-l-2 border-brand-accent pl-8 py-4">
-            <p className="text-[16px] text-brand-ink mb-4">"자극 없이 투명하게 흡수되어서 너무 좋아요. 재구매 의사 200%입니다."</p>
-            <p className="text-[12px] tracking-[0.1em] text-brand-ink-light uppercase">이*연 — Verified Buyer</p>
-          </div>
-        </div>
-      </div>
-      
-      <Footer />
-    </motion.div>
-  );
-};
-
-export default function App() {
-  const [page, setPage] = useState<Page>('home');
-  const [bestTab, setBestTab] = useState<'egf' | 'sun'>('egf');
-  const [aboutTab, setAboutTab] = useState<'story' | 'value'>('story');
-  const [selectedProductId, setSelectedProductId] = useState<string>('');
-  const [selectedNewsId, setSelectedNewsId] = useState<string>('');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -1596,6 +1570,21 @@ export default function App() {
       <CustomCursor />
       <Navbar activePage={page} setPage={setPage} handleNavBest={handleNavBest} handleNavAbout={handleNavAbout} />
       
+      <AnimatePresence>
+        {showTopBtn && page !== 'home' && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            className="fixed bottom-12 right-12 z-[100] w-16 h-16 bg-brand-ink text-brand-white rounded-full flex items-center justify-center shadow-2xl hover:bg-brand-accent transition-all cursor-none"
+            aria-label="상단으로 이동"
+          >
+            <ArrowUp size={20} />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
       <main className="overflow-visible">
         <AnimatePresence mode="wait">
           {page === 'home' && <Home key="home" setPage={setPage} onProductClick={handleProductClick} />}
