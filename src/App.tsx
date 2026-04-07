@@ -1,20 +1,5 @@
-// 패키지를 불러옵니다.
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
-
-function App() {
-  return (
-    <>
-      {/* 기존에 작성된 바이브코딩 컴포넌트와 내용들 */}
-      
-      {/* 아래 두 줄을 가장 바깥쪽 태그 안에 추가합니다. */}
-      <Analytics />
-      <SpeedInsights />
-    </>
-  );
-}
-
-export default App;
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Instagram, ArrowUp } from 'lucide-react';
@@ -1613,6 +1598,8 @@ export default function App() {
           {page === 'news-detail' && <NewsDetail key="news-detail" setPage={setPage} selectedNewsId={selectedNewsId} />}
         </AnimatePresence>
       </main>
+      <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
