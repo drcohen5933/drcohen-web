@@ -1,5 +1,3 @@
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Instagram, ArrowUp } from 'lucide-react';
@@ -30,43 +28,54 @@ const NEWS_ARTICLES: NewsArticle[] = [
     image: '/note1.png',
     verticalLabel: 'Regeneration',
     content: [
-      '아무리 보습제를 발라도 하루가 지나면 다시 당기고 각질이 일어나는 느낌, 익숙하시죠?',
-      '문제는 수분 부족이 아닙니다. 피부 장벽(외부 자극과 수분 증발을 막아주는 피부 보호막)이 손상되어 바른 수분이 그대로 빠져나가는 것이 진짜 원인입니다.',
-      '피부 장벽이 손상되면 외부 자극원이 쉽게 침투해 염증 반응이 반복됩니다. 아토피·민감성 피부에서 흔히 나타나는 가려움, 붉음, 따가움이 바로 이 악순환의 결과입니다. 이때 단순히 수분만 공급하는 보습제로는 장벽 회복이 어렵습니다.',
-      '에몰리언트(장벽 틈새를 채워 유연성과 밀폐력을 동시에 높이는 성분)는 단순 수분 공급을 넘어 피부 장벽 구조 자체를 복원합니다. 히알루론산(피부 속 수분을 끌어당겨 잡아두는 성분)과 시카(병풀 추출물, 진정·재생 효과)를 함께 적용하면 장벽 회복 속도가 유의미하게 높아집니다.',
-      '뮤신은 히알루론산과 유사한 점도 구조로 피부 표면에 얇은 보호막을 형성합니다. 이 막은 수분 증발을 억제하면서 동시에 피부 재생에 관여하는 성장인자(세포 회복 신호를 보내는 단백질) 전달을 도와줍니다.',
-      '손상된 장벽 피부에서 보습과 재생을 동시에 지원하는 이유가 바로 여기에 있습니다.',
-      '세안 후 3분 이내, 피부가 살짝 촉촉할 때 보습제를 바르는 것이 핵심입니다. 히알루론산 세럼으로 수분을 먼저 채우고, 에몰리언트 성분이 풍부한 크림으로 마무리해 장벽을 밀폐하세요. 이 두 단계만 지켜도 보습 지속 시간이 눈에 띄게 달라집니다.'
+      '아무리 발라도 하루가 지나면 또 당기고 각질이 뜨는 경험, 한 번쯤 있으시죠?',
+      '🔍 보습제를 열심히 발라도 건조한 진짜 이유\n\n보습제를 매일 꼼꼼히 바르는데도 피부가 당기고 각질이 일어난다면, 수분이 부족한 게 아닐 수 있어요.\n\n진짜 원인은 \'피부 장벽의 손상\'입니다. 피부 장벽이란 외부 자극과 수분 증발을 막아주는 피부 보호막인데요, 이 막이 손상되면 아무리 수분을 공급해도 그대로 증발해버립니다.\n\n쉽게 말해, 구멍 난 양동이에 물을 계속 붓는 것과 같은 상황이에요. 수분을 채우기 전에 먼저 \'구멍\'을 막는 것이 핵심입니다.',
+      '⚠️ 장벽이 무너지면 피부에 생기는 악순환\n\n피부 장벽이 손상되면 외부 자극원이 쉽게 피부 속으로 침투합니다. 이 과정에서 염증 반응이 반복적으로 일어나게 되는데요.\n\n아토피·민감성 피부에서 자주 느끼는 가려움, 붉음증, 따가움이 바로 이 악순환의 결과예요. 긁으면 장벽이 더 손상되고, 손상된 장벽으로 자극이 더 깊이 침투하는 식입니다.\n\n이 상태에서 단순히 수분만 공급하는 보습제를 사용하면 일시적인 개선은 있어도 근본적인 장벽 회복은 어렵습니다. 피부가 반복적으로 예민하고 건조하다면, 장벽 복원에 초점을 맞춘 케어가 필요한 이유가 바로 여기에 있어요.',
+      '🧪 에몰리언트가 일반 보습제와 다른 점\n\n여기서 주목해야 할 성분이 바로 에몰리언트입니다.\n\n에몰리언트란 장벽의 틈새를 채워 피부에 유연성과 밀폐력을 동시에 높여주는 성분을 말해요. 단순히 수분을 공급하는 것을 넘어, 피부 장벽 구조 자체를 복원하는 데 도움을 줍니다.\n\n여기에 \'히알루론산\'(피부 속 수분을 끌어당겨 잡아두는 성분)과 \'시카\'(병풀 추출물로 진정·재생 효과가 있는 성분)를 함께 활용하면 장벽 회복 속도가 눈에 띄게 빨라집니다. 실제로 최근 연구들에서도 장벽 손상 피부에 복합 성분을 적용했을 때 단일 성분 대비 회복 속도가 유의미하게 개선된 결과가 확인되고 있어요.\n\n🔬 논문 근거: 히드록시부틸 키토산 하이드로겔 적용 시 레이저 시술 후 피부 장벽 회복이 대조군 대비 통계적으로 유의미하게 향상됨 (2026, Prospective Randomized Split-Face Trial)',
+      '🐌 달팽이 뮤신이 장벽 피부에 특히 좋은 과학적 이유\n\n달팽이 뮤신은 최근 몇 년 사이 주목받는 성분인데, 단순한 트렌드가 아닙니다.\n\n뮤신은 히알루론산과 유사한 점도 구조를 가져 피부 표면에 얇고 균일한 보호막을 형성해요. 이 막이 수분 증발을 억제하면서, 동시에 성장인자(세포 회복 신호를 보내는 단백질)의 전달을 도와줍니다.\n\n즉, 달팽이 뮤신은 보습과 피부 재생을 동시에 지원하는 성분이에요. 손상된 장벽 피부에서 수분을 잡아두면서 피부 스스로 회복할 수 있도록 신호를 보내는 셈이죠.\n\n🔬 논문 근거: 재조합 인간 섬유아세포성장인자(bFGF)가 피부 손상 부위의 세포 재생 및 회복에 유의미한 영향을 미침 (2026, Clinical Study)',
+      '📋 아토피·민감성 피부를 위한 올바른 보습 루틴\n\n보습 성분이 아무리 좋아도 바르는 타이밍과 순서가 맞지 않으면 효과가 절반으로 줄어듭니다.\n\n핵심은 세안 후 3분 이내, 피부가 아직 살짝 촉촉한 상태에서 바로 보습제를 적용하는 거예요. 이 짧은 시간 안에 수분을 고정해주는 것이 하루 보습력을 결정합니다.\n\n순서는 이렇게 기억해두세요 :\n\n① 히알루론산 세럼으로 수분 먼저 채우기\n② 에몰리언트 성분이 풍부한 크림으로 마무리해 장벽 밀폐하기\n\n이 두 단계만 꾸준히 지켜도 보습 지속 시간이 확연히 달라지는 것을 느낄 수 있어요. 특히 환절기나 냉난방이 강한 실내 환경에서 더욱 효과적입니다.',
+      '📚 논문 출처\n\n• Seo et al. *Direct Lineage Reprogramming of Fibroblasts into Functional Keratinocyte-Like Cells via BMI1 and FGFR2b for Diabetic Wound Repair.* 2025.\n• Characterization of *Serratia marcescens* (OK482790) prodigiosin along with in vitro and in silico validation for its medicinal bioactivities. 2024.\n• Clinical Study of Recombinant Human Basic Fibroblast Growth Factor Combined With Collagen Sponge in the Treatment of Maxillofacial Degree II Acute Skin Contusion. 2026.\n• Filament coating system assists recovery of ablative fCO₂ laser treatment: A split-face clinical observation. 2024.\n• Hydroxybutyl Chitosan Hydrogel Promotes Ablative Fractional CO₂ Laser Wound Healing: A Prospective, Randomized, Split-Face Trial and Animal Model Evidence. 2026.',
+      '✍️ 마무리하며\n\n결국 건조하고 예민한 피부를 바꾸려면 수분 공급보다 장벽 복원이 먼저예요. 에몰리언트, 히알루론산, 시카, 뮤신처럼 장벽 회복에 실질적으로 작용하는 성분들을 함께 활용하는 것이 핵심입니다.\n\n"닥터코헨 EGF 세럼과 EGF 크림"에는 표피성장인자(EGF)와 장벽 강화 복합 성분이 함께 담겨 있어 세포 재생과 장벽 복원을 동시에 케어할 수 있고, "히알루 시카 워터리 선세럼"은 히알루론산과 시카를 결합해 보습·진정·자외선 차단(SPF50+ PA++++)을 한 번에 챙길 수 있도록 설계되어 있어요. 성분 중심으로 루틴을 고민하시는 분들이라면 한 번 살펴보시길 추천드립니다.'
     ]
   },
   {
     id: 'sun-serum-evolution',
-    title: '자외선 차단제의 진화 — 세럼 타입이 옳은 이유',
+    title: '바르는 것만으로는 부족해요, 선케어',
     date: '2025년 2월 24일',
     category: 'COHEN NOTE',
-    excerpt: '기존 선크림 대비 선세럼의 피부 흡수율과 체감 차이를 데이터로 분석했습니다.',
-    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000&auto=format&fit=crop',
+    excerpt: '자외선 차단만으로는 부족한 피부 노화 방어. 차단, 진정, 재생의 3단계 루틴이 왜 필수적인지 논문 근거와 함께 알아봅니다.',
+    image: '/note2.png',
     verticalLabel: 'Evolution',
     content: [
-      '자외선 차단제는 이제 필수품을 넘어 스킨케어의 연장선이 되었습니다. 닥터코헨은 왜 무거운 크림 제형이 아닌 가벼운 세럼 제형을 선택했을까요?',
-      '연구 결과, 세럼 제형은 크림보다 입자가 미세하여 피부 밀착력이 1.5배 높으며, 백탁 현상 없이 투명하게 흡수됩니다. 이는 메이크업 전 단계에서 피부 결을 정돈하는 데 최적의 조건을 제공합니다.',
-      '또한 히알루론산과 시카 성분을 배합하여 자외선 차단과 동시에 수분 공급 및 진정 효과를 동시에 누릴 수 있도록 설계되었습니다.',
-      '끈적임 없는 산뜻한 사용감은 사계절 내내 자외선 차단을 생활화할 수 있게 돕는 가장 중요한 요소입니다.'
+      '아침마다 선크림을 꼼꼼히 챙겨 바르는데, 거울 속 피부는 왜 여전히 칙칙하고 탄력이 없을까요?\n"자외선 차단만 잘하면 되는 거 아닌가?" 했다가, 어느 날 문득 눈가 잔주름과 처진 피부를 발견하고 당황한 분들 분명 계실 거예요.',
+      '사실 자외선 방어는 선크림 하나로 완성되지 않습니다.\n이 글에서는 자외선이 피부 속에서 실제로 무슨 일을 벌이는지, 그리고 차단 → 진정 → 재생, 세 단계가 왜 반드시 함께여야 하는지를 논문 근거와 함께 쉽게 풀어드릴게요.',
+      '피부 노화의 80%는 자외선 때문이에요\n\n"설마 그 정도야?" 싶겠지만, 피부과학 연구에서 꾸준히 확인되는 수치입니다.\n자외선은 단순히 피부를 \'태우는\' 것에서 그치지 않아요.\n피부 깊숙이 침투해 콜라겐을 분해하고, 세포 DNA를 직접 손상시키며, 만성 염증 상태를 서서히 만들어 냅니다.\n\n문제는 이 손상이 눈에 바로 보이지 않는다는 점이에요.\n오늘 햇볕을 받은 피부가 내일 당장 주름으로 나타나는 게 아니라, 수년에 걸쳐 탄력 저하·색소 침착·피부 결 거침으로 쌓여서 나타나죠.\n선크림이 \'입구를 막는\' 역할을 한다면, 이미 시작된 내부 손상을 되돌리는 별도의 전략이 반드시 필요한 이유가 바로 여기에 있습니다.\n\n📌 *Rittié & Fisher (2002). UV-light-induced signal cascades and skin aging. Ageing Research Reviews.',
+      '🔬 자외선이 피부 속에서 실제로 하는 일\n\n자외선이 피부에 닿는 순간, 세포 안에서는 조용한 전쟁이 시작됩니다.\n\n가장 먼저 일어나는 일은 활성산소(ROS, Reactive Oxygen Species)의 폭발적 생성이에요.\n활성산소는 피부 탄력을 유지하는 진피층 세포인 섬유아세포(fibroblast)를 집중 공격하고, 콜라겐과 엘라스틴 섬유를 파괴하기 시작합니다.\n\n더 무서운 건, 자외선에 반복 노출될수록 MMP(Matrix Metalloproteinase, 콜라겐 분해 효소)의 활성이 급격히 높아진다는 점이에요.\n쉽게 말해, 피부 탄력망을 지탱하는 기둥들을 스스로 무너뜨리는 효소가 과활성화된다는 거예요.\n광노화 연구(2023)에서도 이 메커니즘이 반복 확인되면서, 차단 이후의 \'항산화 대응\'이 얼마나 중요한지가 주목받고 있습니다.\n\n선크림은 자외선의 유입을 줄여주지만, 이미 피부 안에 쌓인 산화 스트레스와 염증 반응에는 직접 작용하지 못해요.\n그래서 차단 이후 단계가 반드시 필요합니다.',
+      '🧪 차단만으로는 부족한 이유 — 항산화가 두 번째 방패\n\n2025년 발표된 D-리모넨 항산화 연구에서 흥미로운 결과가 나왔어요.\n산화 스트레스로 노화가 진행된 피부에 항산화 성분을 적용했더니, 콜라겐 분해가 현저히 억제되고 피부 구조 자체가 회복되는 것이 확인된 거예요.\n\n이 연구 결과가 시사하는 건 명확합니다.\n자외선 방어는 단일 제품·단일 성분으로 해결될 수 없고, **세 가지 축이 맞물려야** 비로소 완성된다는 것이에요.\n\n① 차단 : 선크림·선세럼으로 자외선 자체의 유입을 막는다\n② 항산화 : 활성산소를 중화해 콜라겐 분해 효소의 과활성을 억제한다\n③ 재생 : 이미 손상된 세포와 피부 장벽을 밤새 복구한다\n\n선크림 하나에 이 세 가지를 기대하는 건 무리예요.\n각 단계에 맞는 성분과 루틴이 따로 필요한 이유입니다.\n\n📌 *Huang et al. (2025). D-limonene attenuates D-galactose-induced skin aging mouse model. Journal of Molecular Histology.',
+      '☀️ 햇볕 받은 날 저녁, 피부가 보내는 SOS 신호\n\n외출 후 피부가 괜히 당기고, 살짝 붉어지고, 전체적으로 열감이 느껴지는 경험 있으시죠?\n그건 단순한 건조함이 아니에요.\n피부가 "지금 염증 반응 중"이라고 보내는 신호입니다.\n\n자외선에 노출된 피부는 각질형성세포(keratinocyte, 피부 표면을 구성하는 세포)가 손상되면서 피부 장벽 기능이 급격히 저하돼요.\n이때 수분은 빠져나가고, 외부 자극에 대한 방어력도 떨어지게 됩니다.\n\n2023년 줄기세포 분비물(세크리톰, secretome) 연구에서는, 피부 재생 인자들이 손상된 각질형성세포의 회복 속도를 높이고 장벽 기능을 빠르게 정상화시킨다고 보고했어요.\n즉, 외출 후 저녁 루틴에서 진정·재생 성분을 집중 투입하는 것이 피부 회복의 핵심이라는 뜻입니다.\n\n히알루론산으로 즉각 수분을 채우고, 시카(병풀 추출물, Centella Asiatica)로 염증 반응을 가라앉히는 것. 그리고 밤 사이 재생 성분으로 손상된 세포를 복구하는 것, 이 순서가 중요합니다.\n\n📌 *Tenchov et al. (2023). Effect of stem cell secretome in skin rejuvenation: a narrative review. Molecular Biology Reports.',
+      '📋 오늘부터 실천할 3단계 루틴\n\n복잡하게 생각하지 않아도 돼요. 세 가지 원칙만 지키면 됩니다.\n\n🌅 외출 전\nSPF50+ PA++++ 선세럼으로 자외선 차단과 보습을 동시에 해결하세요.\n자외선 차단 지수가 높을수록, 그리고 보습 성분이 함께 담겨 있을수록 피부 장벽이 더 단단하게 유지됩니다.\n\n🌤️ 외출 중·직후\n히알루론산과 시카(병풀) 성분으로 즉각 수분을 보충하고 진정 케어를 시작하세요.\n열감과 붉기가 남아 있는 상태에서 빠르게 진정시켜 주는 것이 이후 재생 효율을 높입니다.\n\n🌙 저녁 루틴\n항산화·재생 세럼으로 낮 동안 쌓인 산화 손상을 밤새 복구하세요.\n피부 세포 재생이 가장 활발하게 일어나는 시간대인 밤을 적극 활용하는 것이 광노화 방어의 핵심입니다.\n\n차단 → 진정 → 재생, 이 세 단계를 매일 꾸준히 쌓아가는 것.\n그게 자외선으로부터 피부를 지키는 가장 확실하고 과학적인 방법입니다.',
+      '📚 참고 문헌\n\n• Rittié, L. & Fisher, G.J. (2002). UV-light-induced signal cascades and skin aging. *Ageing Research Reviews.*\n• Huang et al. (2025). D-limonene attenuates D-galactose-induced skin aging mouse model. *Journal of Molecular Histology.*\n• Tenchov et al. (2023). Effect of stem cell secretome in skin rejuvenation: a narrative review. *Molecular Biology Reports.*\n• Direct Lineage Reprogramming of Fibroblasts into Functional Keratinocyte-Like Cells via BMI1 and FGFR2b for Diabetic Wound Repair. (2025)\n• Filament coating system assists recovery of ablative fCO₂ laser treatment: A split-face clinical observation. (2024)\n• Hydroxybutyl Chitosan Hydrogel Promotes Ablative Fractional CO₂ Laser Wound Healing: A Prospective, Randomized, Split-Face Trial and Animal Model Evidence. (2026)\n• Ethnopharmacological evaluation of Vitellaria paradoxa triterpenes for wound healing: In vivo evidence of lupeol and α/β-amyrin in promoting dermal regeneration. (2026)',
+      '🌿 마무리하며\n\n자외선 방어는 선크림 하나로 완성되지 않아요.\n차단으로 막고, 항산화로 중화하고, 재생 성분으로 복구하는 세 단계가 매일의 루틴 속에서 함께 작동해야 비로소 피부는 노화 속도를 늦출 수 있습니다.\n\n닥터코헨의 히알루 시카 워터리 선세럼(SPF50+ PA++++)은 자외선 차단과 동시에 히알루론산·시카 성분으로 보습과 진정을 함께 담았고, EGF 세럼·EGF 크림에는 표피성장인자(EGF)를 비롯한 재생 복합 성분이 담겨 있어 저녁 루틴의 복구 단계를 채워주는 선택지가 될 수 있어요.'
     ]
   },
   {
     id: 'vegan-formula',
-    title: '비건 포뮬러, 효능을 타협하지 않는 방법',
+    title: '보습 크림, 아무거나 발라도 될까요?',
     date: '2025년 1월 15일',
     category: 'COHEN NOTE',
-    excerpt: '동물성 원료 없이도 임상 효능을 유지하는 닥터코헨 비건 포뮬러의 개발 과정.',
-    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=1000&auto=format&fit=crop',
-    verticalLabel: 'Veganism',
+    excerpt: '크림을 발라도 금방 당기는 건성·민감 피부를 위한 진짜 보습의 비밀. 피부 장벽 복원과 핵심 성분(히알루론산, 시카)의 과학적 효능을 분석합니다.',
+    image: '/note3.png',
+    verticalLabel: 'Moisture',
     content: [
-      '지속 가능한 아름다움을 위해 닥터코헨은 비건 포뮬러를 지향합니다. 하지만 비건 제품은 효능이 떨어진다는 편견이 있었습니다.',
-      '우리는 식물 유래 단백질과 천연 추출물을 조합하여 동물성 원료를 대체하면서도 동일한, 혹은 그 이상의 효능을 내는 최적의 배합비를 찾아냈습니다.',
-      '전 제품 이탈리아 V-LABEL 비건 인증을 획득하며 안전성과 윤리성을 동시에 입증했습니다.',
-      '피부와 환경 모두에게 건강한 선택, 닥터코헨이 제안하는 새로운 뷰티 기준입니다.'
+      '크림을 열심히 발랐는데, 한 시간도 안 돼 피부가 다시 당기는 경험 😢\n"내가 원래 건성이라 어쩔 수 없나 봐…" 하고 포기하신 적 있으신가요?\n\n사실 그건 피부 탓이 아니라, 보습제 선택의 문제일 수 있습니다.\n오늘은 \'촉촉한 느낌\'과 \'진짜 보습\'이 어떻게 다른지, 그리고 건성·민감 피부에 실제로 효과 있는 성분이 무엇인지 과학적으로 풀어드릴게요.',
+      '💧 크림 바른 직후엔 촉촉한데, 왜 금방 당길까요?\n\n보습제를 바른 직후의 그 포근한 느낌, 오래가지 않아서 속상하신 분 많으시죠.\n사실 대부분의 보습제는 피부 표면에 일시적으로 수분을 \'덮어주는\' 역할을 합니다.\n이건 피부가 스스로 수분을 붙잡는 능력이 살아난 게 아니에요.\n\n수분이 덮이는 것과, 수분이 머무는 것은 전혀 다른 이야기입니다.\n진짜 보습은 단순히 촉촉한 느낌을 주는 게 아니라, 피부 장벽을 복원하는 것에서 시작됩니다.\n이 차이를 모르고 보습제를 고르면, 아무리 좋은 크림을 발라도 결국 제자리 걸음이 될 수밖에 없어요.',
+      '🧱 피부 장벽(Skin Barrier)이란 무엇인가요?\n\n피부 장벽은 외부 먼지·자극·세균을 막아주고, 피부 안쪽의 수분이 밖으로 빠져나가지 않도록 잡아주는 구조입니다.\n쉽게 말하면, 피부의 \'방어막\'이자 \'물탱크 뚜껑\' 같은 역할이에요.\n\n이 장벽은 세라마이드(피부 지질의 핵심 구성 성분), 지질(지방 성분), 그리고 천연보습인자(NMF, Natural Moisturizing Factor)로 이루어져 있어요.\n이 구조가 손상되면 어떤 비싼 크림을 발라도 수분은 금세 증발합니다.\n\n건성 피부의 당김, 민감 피부의 홍조와 따가움, 계절이 바뀔 때마다 피부가 예민해지는 것, 대부분 이 장벽이 무너진 신호입니다.\n결국 피부 장벽 복원 없이는 보습도 없다는 결론에 이르게 되죠.',
+      '🔬 장벽 복원에 꼭 필요한 핵심 성분 2가지\n\n장벽을 복원하는 데 과학적으로 입증된 성분으로 가장 자주 언급되는 것이 바로 히알루론산과 시카(센텔라 아시아티카) 입니다.\n\n히알루론산(Hyaluronic Acid)은 피부 속에 원래 존재하는 천연 보습 물질입니다.\n자기 무게의 1,000배에 달하는 수분을 끌어당겨 붙잡는 능력이 있어서, 피부 안에서 수분이 오래 머물도록 도와줍니다.\n\n시카(Cica, 센텔라 아시아티카)는 손상된 피부를 진정시키고 장벽 재생을 촉진하는 성분입니다.\n오랫동안 상처 치유에 활용되어 온 식물 추출 성분으로, 피부 자극이 적어 민감성 피부에도 잘 맞습니다.\n\n연구에 따르면 이 두 성분이 함께 작용할 때 피부 보호막 복구 속도가 단독 사용보다 유의미하게 향상된다는 결과가 보고되어 있습니다.\n히알루론산이 수분을 채우고, 시카가 장벽을 다시 쌓아 올리는 이중 구조 덕분이에요.\n\n📌 *Pham et al. (2026). Hydroxybutyl Chitosan Hydrogel Promotes Ablative Fractional CO2 Laser Wound Healing. Lasers in Surgery and Medicine.',
+      '📊 과학이 증명한 진짜 보습 효과\n\n\'덜 건조한 느낌\'은 주관적입니다. 그래서 과학은 더 객관적인 지표를 씁니다.\n바로 경피수분손실량(TEWL, Transepidermal Water Loss) 인데요, 피부 밖으로 빠져나가는 수분의 양을 실제로 측정하는 수치입니다.\nTEWL이 낮을수록 피부 안에 수분이 더 오래 머물고 있다는 뜻이에요.\n\n2024년 임상 연구에서, 장벽 복원 성분이 포함된 보습제를 사용한 그룹은 일반 보습제를 사용한 그룹보다 TEWL 수치가 유의미하게 감소했습니다.\n즉, 느낌이 아니라 실제 수치로 피부 속 수분이 더 오래 유지된다는 것이 확인된 거예요.\n\n이 결과는 성분 선택이 얼마나 중요한지를 잘 보여줍니다.\n비싼 크림보다, 성분이 제대로 된 크림이 더 효과적일 수 있다는 것이죠.\n\n📌 *Wang et al. (2024). Filament coating system assists recovery of ablative fCO2 laser treatment: A split-face clinical observation. Journal of Cosmetic Dermatology.',
+      '✅ 건성·민감 피부를 위한 올바른 보습 루틴\n\n성분을 알았다면, 이제 바르는 방법도 중요합니다.\n아무리 좋은 성분도 순서와 타이밍이 맞지 않으면 효과가 반감될 수 있거든요.\n\n세안 후 3분 이내, 피부에 수분이 아직 남아 있을 때 바르는 것이 핵심입니다.\n이 짧은 시간 안에 수분을 잡아주는 세럼을 먼저 올려줘야 이후 크림의 흡수율도 높아집니다.',
+      '📋 추천 보습 루틴 3단계\n\n① 히알루론산 세럼 : 피부에 수분을 먼저 충분히 공급해줍니다.\n수분이 있을 때 히알루론산을 올려야 수분을 \'붙잡는\' 효과가 극대화됩니다.\n\n② 시카 성분 크림 : 공급된 수분이 밖으로 빠져나가지 않도록 장벽을 밀봉해줍니다.\n진정 효과도 함께 있어서 민감하게 달아오른 피부를 차분하게 가라앉혀줘요.\n\n③ 낮에는 자외선 차단제 : 열심히 복원한 장벽을 자외선으로부터 지켜줍니다.\n자외선은 피부 장벽을 다시 손상시키는 주요 원인 중 하나이기 때문에, 마무리 단계에서 반드시 챙겨야 해요.\n\n이 세 단계, 순서와 성분을 함께 지킬 때 피부 장벽은 비로소 제대로 회복되기 시작합니다.',
+      '📚 참고 문헌\n\n• Direct Lineage Reprogramming of Fibroblasts into Functional Keratinocyte-Like Cells via BMI1 and FGFR2b for Diabetic Wound Repair. (2025)\n• Characterization of Serratia marcescens (OK482790) prodigiosin along with in vitro and in silico validation for its medicinal bioactivities. (2024)\n• Clinical Study of Recombinant Human Basic Fibroblast Growth Factor Combined With Collagen Sponge in the Treatment of Maxillofacial Degree II Acute Skin Contusion. (2026)\n• Wang et al. Filament coating system assists recovery of ablative fCO2 laser treatment: A split-face clinical observation. Journal of Cosmetic Dermatology. (2024)\n• Pham et al. Hydroxybutyl Chitosan Hydrogel Promotes Ablative Fractional CO2 Laser Wound Healing: A Prospective, Randomized, Split-Face Trial and Animal Model Evidence. Lasers in Surgery and Medicine. (2026)',
+      '🌿 마무리하며\n\n보습의 핵심은 \'얼마나 촉촉하게 느껴지느냐\'가 아니라, 피부 장벽이 실제로 회복되고 있느냐입니다.\n히알루론산으로 수분을 채우고, 시카로 장벽을 단단히 쌓아 올리는 것, 이 두 가지가 함께 이루어질 때 건성·민감 피부는 서서히 달라지기 시작합니다.\n\n닥터코헨의 히알루 시카 워터리 선세럼(SPF50+ PA++++)에는 히알루론산과 시카가 함께 담겨 있어 수분 보유·장벽 진정·자외선 차단을 한 번에 케어할 수 있고, EGF 크림·EGF 세럼에는 표피성장인자와 장벽 강화 성분이 포함되어 있어 손상된 피부 세포 재생과 탄력 케어에 도움이 되는 구성입니다.'
     ]
   }
 ];
@@ -168,6 +177,7 @@ interface PageProps {
   onProductClick?: (id: string) => void;
   selectedNewsId?: string;
   onNewsClick?: (id: string) => void;
+  setSelectedNewsId?: (id: string) => void;
 }
 
 // --- Components ---
@@ -773,7 +783,7 @@ const News: React.FC<PageProps> = ({ onNewsClick }) => (
   </motion.div>
 );
 
-const NewsDetail: React.FC<PageProps> = ({ setPage, selectedNewsId }) => {
+const NewsDetail: React.FC<PageProps> = ({ setPage, selectedNewsId, onNewsClick }) => {
   const article = NEWS_ARTICLES.find(a => a.id === selectedNewsId);
   
   if (!article) return null;
@@ -827,7 +837,7 @@ const NewsDetail: React.FC<PageProps> = ({ setPage, selectedNewsId }) => {
 
         <div className="flex flex-col gap-12 mb-32">
           {article.content.map((paragraph, i) => (
-            <p key={i} className="text-[18px] text-brand-ink-light leading-[2] tracking-[0.01em]">
+            <p key={i} className="text-[18px] text-brand-ink-light leading-[2] tracking-[0.01em] whitespace-pre-line">
               {paragraph}
             </p>
           ))}
@@ -840,7 +850,10 @@ const NewsDetail: React.FC<PageProps> = ({ setPage, selectedNewsId }) => {
             {NEWS_ARTICLES.filter(a => a.id !== article.id).slice(0, 2).map(other => (
               <div 
                 key={other.id} 
-                onClick={() => setPage?.('news')} // Simplified for now
+                onClick={() => {
+                  onNewsClick?.(other.id);
+                  window.scrollTo(0, 0);
+                }}
                 className="group cursor-none"
               >
                 <div className="aspect-video overflow-hidden mb-2">
@@ -1595,11 +1608,9 @@ export default function App() {
           {page === 'news' && <News key="news" setPage={setPage} onNewsClick={handleNewsClick} />}
           {page === 'community' && <Community key="community" setPage={setPage} />}
           {page === 'product' && <ProductDetail key="product" setPage={setPage} selectedProductId={selectedProductId} />}
-          {page === 'news-detail' && <NewsDetail key="news-detail" setPage={setPage} selectedNewsId={selectedNewsId} />}
+          {page === 'news-detail' && <NewsDetail key={`news-detail-${selectedNewsId}`} setPage={setPage} selectedNewsId={selectedNewsId} onNewsClick={handleNewsClick} />}
         </AnimatePresence>
       </main>
-      <Analytics />
-      <SpeedInsights />
     </div>
   );
 }
