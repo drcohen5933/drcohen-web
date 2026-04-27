@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Instagram, ArrowUp } from 'lucide-react';
-import promo2Img from './promo2.png';
+import promo3Img from './promo3.png';
 import creamMainImg from './cream_main.png';
 
 // --- Types ---
@@ -440,7 +440,7 @@ const Home: React.FC<PageProps> = ({ setPage, onProductClick }) => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
-            src={promo2Img} 
+            src={promo3Img} 
             className="w-full h-full object-cover" 
             alt="Skin Science" 
             referrerPolicy="no-referrer" 
@@ -448,19 +448,18 @@ const Home: React.FC<PageProps> = ({ setPage, onProductClick }) => {
         </div>
 
         {/* Content Overlay */}
-        <div className="absolute inset-x-0 bottom-28 flex justify-center z-10">
+        <div className="absolute inset-x-0 bottom-[42%] flex justify-center z-10 text-center">
           <motion.button
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
             whileHover={{ 
               scale: 1.05, 
-              backgroundColor: '#DDF2D1', // Pastel lime green (Sun Serum color)
-              borderColor: 'rgba(0,0,0,0.05)'
+              color: '#1B4D3E'
             }}
             whileTap={{ scale: 0.98 }}
             onClick={() => window.open('https://smartstore.naver.com/drcohen/products/11963043290', '_blank', 'noopener,noreferrer')}
-            className="bg-white/95 text-black px-10 py-3.5 rounded-full text-[13px] font-bold tracking-tight shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-all duration-300 cursor-none border border-white/20 backdrop-blur-md"
+            className="bg-transparent text-black px-24 py-12 text-[24px] font-bold tracking-tight transition-all duration-300 cursor-none border-none"
           >
             선세럼 1+1 이벤트 바로가기
           </motion.button>
