@@ -544,8 +544,8 @@ const Home: React.FC<PageProps> = ({ setPage, onProductClick }) => {
 };
 
 const MarqueeItem = ({ text }: { text: string }) => (
-  <span className="text-[14px] font-bold tracking-[0.2em] uppercase flex items-center gap-6 shrink-0" style={{ color: '#749474' }}>
-    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#749474' }} />
+  <span className="text-[14px] font-bold tracking-[0.2em] uppercase flex items-center gap-6 shrink-0" style={{ color: '#800020' }}>
+    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#800020' }} />
     {text}
   </span>
 );
