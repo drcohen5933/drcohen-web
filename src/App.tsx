@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Instagram, ArrowUp } from 'lucide-react';
-import promo3Img from './promo3.png';
+import promoImg from './promo.png';
+import homeMainImg from '../m.png';
 import creamMainImg from './cream_main.png';
 
 // --- Types ---
@@ -435,56 +436,51 @@ const Home: React.FC<PageProps> = ({ setPage, onProductClick }) => {
       exit={{ opacity: 0, y: -10 }}
       className="pt-0"
     >
-      {/* Hero - Full Screen Layout */}
-      <section className="relative h-screen overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
+      {/* Hero - Split Layout */}
+      <section className="relative h-[90vh] flex flex-col lg:flex-row overflow-hidden">
+        {/* Left Pane - Image */}
+        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative overflow-hidden">
           <img 
-            src={promo3Img} 
+            src={homeMainImg} 
             className="w-full h-full object-cover" 
             alt="Skin Science" 
             referrerPolicy="no-referrer" 
           />
         </div>
 
-        {/* Content Overlay */}
-        <div className="absolute inset-x-0 bottom-[42%] flex justify-center z-10 text-center">
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            whileHover={{ 
-              scale: 1.05, 
-              color: '#1B4D3E'
-            }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => window.open('https://smartstore.naver.com/drcohen/products/11963043290', '_blank', 'noopener,noreferrer')}
-            className="bg-transparent text-black px-24 py-12 text-[24px] font-bold tracking-tight transition-all duration-300 cursor-none border-none"
-          >
-            선세럼 1+1 이벤트 바로가기
-          </motion.button>
+        {/* Right Pane - Content */}
+        <div className="w-full lg:w-1/2 h-1/2 lg:h-full bg-[#F9F9F7] flex flex-col items-center justify-center p-10 relative">
+          <div className="max-w-[400px] text-center flex flex-col items-center">
+          </div>
+
+          {/* Large Typography at Bottom Right */}
+          <div className="absolute bottom-10 right-10 text-right">
+            <h1 className="font-black text-[12vw] lg:text-[8vw] leading-none tracking-tighter text-[#749474] uppercase">
+              Dr. Cohen.
+            </h1>
+          </div>
         </div>
       </section>
 
       {/* Marquee */}
-      <div className="border-y border-brand-stone/20 py-4 overflow-hidden bg-white">
-        <div className="flex whitespace-nowrap animate-marquee">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="flex gap-[60px] pr-[60px]">
-              <MarqueeItem text="저자극" />
-              <MarqueeItem text="히알루론" />
-              <MarqueeItem text="EGF" />
-              <MarqueeItem text="세포 재생" />
-              <MarqueeItem text="미백" />
-              <MarqueeItem text="이지 액티브+ 프로틴" />
-              <MarqueeItem text="닥터코헨" />
+      <div className="border-y border-brand-stone/20 py-6 overflow-hidden bg-white cursor-none">
+        <a 
+          href="https://smartstore.naver.com/drcohen/products/11963043290"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex whitespace-nowrap animate-marquee group cursor-none"
+        >
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="flex gap-[40px] pr-[40px]">
+              <MarqueeItem text="선세럼 1+1 이벤트 바로가기" />
+              <MarqueeItem text="선세럼 1+1 이벤트 바로가기" />
             </div>
           ))}
-        </div>
+        </a>
       </div>
 
       {/* Featured Products */}
-      <section className="px-10 py-32">
+      <section id="featured-products" className="px-10 py-32">
         <div className="text-center mb-20">
           <h2 className="font-bold text-[clamp(40px,6vw,64px)] leading-none text-brand-ink tracking-tight uppercase">
             BEST
@@ -548,8 +544,8 @@ const Home: React.FC<PageProps> = ({ setPage, onProductClick }) => {
 };
 
 const MarqueeItem = ({ text }: { text: string }) => (
-  <span className="text-[12px] tracking-[0.44em] uppercase text-brand-accent flex items-center gap-6 shrink-0">
-    <span className="w-1 h-1 rounded-full bg-brand-accent shrink-0" />
+  <span className="text-[14px] font-bold tracking-[0.2em] uppercase flex items-center gap-6 shrink-0" style={{ color: '#749474' }}>
+    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#749474' }} />
     {text}
   </span>
 );
