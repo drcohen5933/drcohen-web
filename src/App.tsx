@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Instagram, ArrowUp } from 'lucide-react';
-import homeImg from './home.png';
+import promo2Img from './promo2.png';
 import creamMainImg from './cream_main.png';
 
 // --- Types ---
@@ -41,7 +41,7 @@ const NEWS_ARTICLES: NewsArticle[] = [
   {
     id: 'sun-serum-evolution',
     title: '바르는 것만으로는 부족해요, 선케어',
-    date: '2025년 2월 24일',
+    date: '2026년 4월 10일',
     category: 'COHEN NOTE',
     excerpt: '자외선 차단만으로는 부족한 피부 노화 방어. 차단, 진정, 재생의 3단계 루틴이 왜 필수적인지 논문 근거와 함께 알아봅니다.',
     image: '/note2.png',
@@ -61,7 +61,7 @@ const NEWS_ARTICLES: NewsArticle[] = [
   {
     id: 'vegan-formula',
     title: '보습 크림, 아무거나 발라도 될까요?',
-    date: '2025년 1월 15일',
+    date: '2026년 4월 10일',
     category: 'COHEN NOTE',
     excerpt: '크림을 발라도 금방 당기는 건성·민감 피부를 위한 진짜 보습의 비밀. 피부 장벽 복원과 핵심 성분(히알루론산, 시카)의 과학적 효능을 분석합니다.',
     image: '/note3.png',
@@ -76,6 +76,40 @@ const NEWS_ARTICLES: NewsArticle[] = [
       '📋 추천 보습 루틴 3단계\n\n① 히알루론산 세럼 : 피부에 수분을 먼저 충분히 공급해줍니다.\n수분이 있을 때 히알루론산을 올려야 수분을 \'붙잡는\' 효과가 극대화됩니다.\n\n② 시카 성분 크림 : 공급된 수분이 밖으로 빠져나가지 않도록 장벽을 밀봉해줍니다.\n진정 효과도 함께 있어서 민감하게 달아오른 피부를 차분하게 가라앉혀줘요.\n\n③ 낮에는 자외선 차단제 : 열심히 복원한 장벽을 자외선으로부터 지켜줍니다.\n자외선은 피부 장벽을 다시 손상시키는 주요 원인 중 하나이기 때문에, 마무리 단계에서 반드시 챙겨야 해요.\n\n이 세 단계, 순서와 성분을 함께 지킬 때 피부 장벽은 비로소 제대로 회복되기 시작합니다.',
       '📚 참고 문헌\n\n• Direct Lineage Reprogramming of Fibroblasts into Functional Keratinocyte-Like Cells via BMI1 and FGFR2b for Diabetic Wound Repair. (2025)\n• Characterization of Serratia marcescens (OK482790) prodigiosin along with in vitro and in silico validation for its medicinal bioactivities. (2024)\n• Clinical Study of Recombinant Human Basic Fibroblast Growth Factor Combined With Collagen Sponge in the Treatment of Maxillofacial Degree II Acute Skin Contusion. (2026)\n• Wang et al. Filament coating system assists recovery of ablative fCO2 laser treatment: A split-face clinical observation. Journal of Cosmetic Dermatology. (2024)\n• Pham et al. Hydroxybutyl Chitosan Hydrogel Promotes Ablative Fractional CO2 Laser Wound Healing: A Prospective, Randomized, Split-Face Trial and Animal Model Evidence. Lasers in Surgery and Medicine. (2026)',
       '🌿 마무리하며\n\n보습의 핵심은 \'얼마나 촉촉하게 느껴지느냐\'가 아니라, 피부 장벽이 실제로 회복되고 있느냐입니다.\n히알루론산으로 수분을 채우고, 시카로 장벽을 단단히 쌓아 올리는 것, 이 두 가지가 함께 이루어질 때 건성·민감 피부는 서서히 달라지기 시작합니다.\n\n닥터코헨의 히알루 시카 워터리 선세럼(SPF50+ PA++++)에는 히알루론산과 시카가 함께 담겨 있어 수분 보유·장벽 진정·자외선 차단을 한 번에 케어할 수 있고, EGF 크림·EGF 세럼에는 표피성장인자와 장벽 강화 성분이 포함되어 있어 손상된 피부 세포 재생과 탄력 케어에 도움이 되는 구성입니다.'
+    ]
+  },
+  {
+    id: 'egf-science-depth',
+    title: '보습+항염 성분이 피부 장벽을 되살리는 법',
+    date: '2026년 4월 15일',
+    category: 'COHEN NOTE',
+    excerpt: '예민한 피부를 위한 장벽 회복의 핵심, 보습과 항염 성분의 과학적 조화와 실질적인 관리법을 알아봅니다.',
+    image: '/note1-1.png',
+    verticalLabel: 'Longevity',
+    content: [
+      '예민한 피부 장벽 회복, 보습+항염 성분을 함께 써야 하는 진짜 이유\n\n세안하고 나면 늘 당기고, 조금만 자극받아도 금세 빨개지는 피부.\n"나만 이런가?" 싶지만, 사실 이런 고민을 가진 분들이 정말 많습니다.\n\n단순히 보습 크림 하나 더 바른다고 해결되지 않아서 답답하셨죠?\n그 이유는 피부 장벽이 무너진 상태에서는 수분만 채워선 부족하기 때문입니다.\n\n오늘은 예민한 피부가 왜 생기는지, 그리고 어떤 성분이 장벽 회복에 실질적으로 도움이 되는지를 논문 근거와 함께 쉽게 풀어드릴게요.',
+      '🔍 내 피부, 왜 이렇게 예민한 걸까요?\n\n화장품을 바꾸지도 않았는데 갑자기 피부가 예민해졌다면, 원인은 피부 표면의 장벽 손상에 있을 가능성이 높습니다.\n\n피부 장벽은 외부 자극으로부터 피부를 보호하는 방어막 역할을 합니다.\n이 장벽이 약해지면 수분은 쉽게 빠져나가고, 외부 자극물은 반대로 피부 속으로 그대로 스며들게 됩니다.\n\n세안 후 느껴지는 \'당김\'과 \'따가움\', 조금만 마찰이 생겨도 올라오는 \'붉음\'은 모두 장벽이 제 역할을 못 하고 있다는 신호입니다.\n"건조한 피부"가 아니라 "장벽이 손상된 피부"로 접근해야 관리 방향이 달라집니다.',
+      '🧱 피부 장벽이 무너지면 어떤 일이 생기나요?\n\n피부 장벽은 각질형성세포(피부 표면을 빈틈없이 채우는 세포)들이 층층이 쌓여 만들어진 구조입니다.\n마치 벽돌이 촘촘히 쌓인 담벼락처럼, 이 구조가 튼튼할수록 피부는 외부 환경으로부터 잘 보호됩니다.\n\n반대로 이 구조가 깨지면, 수분 증발이 빨라지고 세균이나 자극 물질이 피부 안으로 침투하기 쉬워집니다.\n특히 아토피성 피부는 이 방어막 자체가 선천적으로 취약한 경우가 많습니다.\n\n장벽이 약한 피부는 염증 반응이 반복되고, 염증이 반복될수록 장벽은 더 무너지는 악순환에 빠집니다.\n진정과 보습이 단순한 \'피부 관리\'가 아닌 \'회복의 출발점\'인 이유가 바로 여기 있습니다.',
+      '💧 보습만으론 부족한 이유 — 항염 성분이 함께 필요합니다\n\n보습 성분의 대표주자 히알루론산(피부 속 수분을 끌어당겨 잡아두는 성분)은 장벽 회복을 위한 수분 기반을 만들어줍니다.\n하지만 피부에 염증이 진행 중인 상태에서는 수분만 채워도 자꾸 무너집니다.\n\n여기서 함께 필요한 것이 시카(센텔라아시아티카) 성분입니다.\n시카는 염증 신호를 차단해 피부가 자극에 반응하는 강도 자체를 낮춰주는 역할을 합니다.\n\n줄기세포 분비물질 관련 연구(Babaei et al., 2023)에 따르면, 항염 및 보습 활성 성분이 피부 재생 세포의 환경을 안정시키고 장벽 구성에 필요한 단백질 발현을 촉진한다는 사실이 확인되었습니다.\n\n즉, 수분을 채우는 동시에 염증 반응을 잠재워야 장벽이 실질적으로 회복될 수 있습니다.\n보습과 항염, 이 두 가지는 \'선택\'이 아니라 \'세트\'로 접근해야 합니다.',
+      '🔬 진정 성분이 피부를 바꾸는 과정, 과학적으로 살펴보면\n\n항염 성분이 피부에 닿으면 가장 먼저 하는 일은 염증 신호 차단입니다.\n염증이 줄어들면, 피부 진피층에서 콜라겐을 생성하는 섬유아세포(피부 탄력과 재생을 담당하는 세포)가 제 역할을 다시 하기 시작합니다.\n\n같은 연구(Babaei et al., 2023)에서는 염증이 억제된 환경에서 피부 재생 세포의 이동 속도와 증식률이 모두 높아지는 것이 관찰되었습니다.\n\n결국 자극을 줄여야 피부 스스로 회복할 공간이 생깁니다.\n예민한 피부에 필요한 것은 \'아무것도 하지 않는 것\'이 아니라,\n자극을 최소화하면서 재생 환경을 만들어주는 것입니다.',
+      '✅ 예민한 피부, 오늘부터 이렇게 관리하세요\n\n① 세안 후 30초 이내에 보습을 시작하세요\n피부가 외부에 노출되는 시간이 짧을수록 수분 손실을 줄일 수 있습니다.\n세안 후 물기를 두드려 닦자마자 바로 스킨케어를 시작하는 것이 핵심입니다.\n\n② 히알루론산 + 시카 성분을 레이어링(단계적으로 겹쳐 바르기)하세요\n수분막과 진정막이 함께 형성되어 장벽 회복 효과가 배가됩니다.\n가벼운 질감의 세럼을 먼저 바르고, 그 위에 보습 크림으로 마무리하는 순서가 좋습니다.\n\n③ 각질 제거와 강한 세안은 잠시 멈추세요\n이미 약해진 장벽에 물리적 자극을 더하면 회복이 더뎌집니다.\n피부가 안정될 때까지는 순한 클렌저로 부드럽게 세안하는 것만으로도 충분합니다.\n\n붉고 예민한 피부일수록, 가장 먼저 해야 할 일은 자극을 줄이고 장벽을 채우는 것입니다.\n화려한 성분보다 \'지금 피부에 필요한 것\'에 집중하는 것이 회복의 시작입니다.',
+      '🌱 마무리하며\n\n예민한 피부는 단순히 \'약한 피부\'가 아닙니다.\n장벽이 손상된 상태에서 보내는 회복 신호이고, 올바른 접근으로 충분히 안정시킬 수 있습니다.\n\n핵심은 보습과 항염을 동시에, 그리고 자극을 최소화하는 것입니다.\n\n닥터코헨의 히알루 시카 워터리 선세럼에는 히알루론산과 시카 성분이 함께 담겨 있어, 보습과 진정을 동시에 케어하면서 SPF50+ PA++++ 자외선 차단까지 지원합니다.\n장벽 강화와 세포 재생에 집중하고 싶다면 EGF 세럼·EGF 크림라인도 함께 참고해 보세요.'
+    ]
+  },
+  {
+    id: 'sun-aging-protection',
+    title: 'UVA 차단으로\n피부 광노화를 늦추는 법',
+    date: '2026년 4월 24일',
+    category: 'COHEN NOTE',
+    excerpt: '자외선 차단과 피부 장벽 케어의 상관관계, 히알루론산과 시카 성분이 선케어 루틴에 필수적인 과학적 이유를 알아봅니다.',
+    image: '/note5.png',
+    verticalLabel: 'Protection',
+    content: [
+      '히알루론산 + 시카가 선케어에 함께 있어야 하는 이유\n\n자외선 차단 효과를 온전히 누리려면, 차단 성분만으로는 부족합니다.\n피부 장벽이 탄탄하게 유지되어야 자외선 손상에 대한 저항력도 높아지기 때문입니다.\n\n광노화 연구에서는 피부 장벽이 약해질수록 자외선 손상이 더 빠르게 축적된다는 점이 확인되었습니다.\n즉, 선케어와 장벽 케어는 분리된 개념이 아니라 하나의 루틴 안에서 함께 작동해야 합니다.\n\n여기서 두 가지 성분이 중요한 역할을 합니다.',
+      '히알루론산(Hyaluronic Acid)\n\n피부 속 수분을 붙잡아 두는 천연 보습 물질입니다.\n세포 사이의 수분 환경을 촉촉하게 유지해줘, 자외선 손상 이후의 회복력을 높여줍니다.\n건조한 피부일수록 광노화가 빠르게 진행되기 때문에, 보습은 차단 못지않게 중요한 항노화 전략입니다.',
+      '시카(Cica / 센텔라아시아티카 추출물)\n\n손상된 피부 장벽을 진정시키고 복구하는 데 특화된 식물 성분입니다.\n자외선이나 환경 자극으로 예민해진 피부를 빠르게 안정시키고, 외부 자극에 대한 저항력을 강화해줍니다.\n\n이 두 성분이 차단 성분과 함께 담긴 선크림을 고른다면, 차단·보습·진정·장벽 강화까지 한 번에 챙기는 효율적인 루틴이 완성됩니다.',
+      '📅 오늘 선크림이 10년 후 피부를 만듭니다\n\n광노화는 어느 날 갑자기 생기지 않습니다.\n차단하지 않은 하루하루가 쌓여서, 어느 순간 \'갑자기 늙어 보이는\' 날이 오는 것입니다.\n\n반대로 생각하면, 오늘 선크림을 바르는 선택이 10년 후 피부를 바꾸는 일입니다.\n\n실천 포인트는 단순합니다.\n\n- ✅ SPF50+ PA++++이상의 제품 선택 (UVA·UVB 동시 차단)\n- ✅ 외출 30분 전 충분한 양으로 도포\n- ✅ 흐린 날, 실내에서도 생략하지 않기\n- ✅ 보습·진정 성분이 함께 담긴 선세럼 활용으로 꾸준한 실천\n\n특히 선세럼 타입은 일반 선크림보다 산뜻한 질감으로 매일 바르기 편해, 꾸준함이 중요한 선케어 루틴에 잘 맞습니다.',
+      '🌿 마무리하며\n\n선크림은 단순히 피부를 태우지 않기 위한 제품이 아닙니다.\n매일 바르는 습관이 콜라겐을 지키고, 피부 장벽을 보호하고, 10년 후의 피부 나이를 결정합니다.\n\n닥터코헨 히알루 시카 워터리 선세럼은 SPF50+ PA++++의 자외선 차단 효과에 히알루론산과 시카를 함께 담아, 차단과 보습·진정을 한 번에 챙길 수 있도록 설계되었습니다.\n피부 재생을 집중적으로 케어하고 싶다면, 표피성장인자(EGF)가 담긴 닥터코헨 EGF 세럼·크림과 함께 루틴을 구성해보시는 것도 좋은 방법입니다.'
     ]
   }
 ];
@@ -401,29 +435,35 @@ const Home: React.FC<PageProps> = ({ setPage, onProductClick }) => {
       exit={{ opacity: 0, y: -10 }}
       className="pt-0"
     >
-      {/* Hero - Split Layout */}
-      <section className="relative h-screen flex flex-col lg:flex-row overflow-hidden">
-        {/* Left Pane - Image */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative overflow-hidden">
+      {/* Hero - Full Screen Layout */}
+      <section className="relative h-screen overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
           <img 
-            src={homeImg} 
+            src={promo2Img} 
             className="w-full h-full object-cover" 
             alt="Skin Science" 
             referrerPolicy="no-referrer" 
           />
         </div>
 
-        {/* Right Pane - Content */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full bg-[#F9F9F7] flex flex-col items-center justify-center p-10 relative">
-          <div className="max-w-[400px] text-center flex flex-col items-center">
-          </div>
-
-          {/* Large Typography at Bottom Right */}
-          <div className="absolute bottom-10 right-10 text-right">
-            <h1 className="font-black text-[12vw] lg:text-[8vw] leading-none tracking-tighter text-brand-accent uppercase">
-              Dr. Cohen.
-            </h1>
-          </div>
+        {/* Content Overlay */}
+        <div className="absolute inset-x-0 bottom-28 flex justify-center z-10">
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            whileHover={{ 
+              scale: 1.05, 
+              backgroundColor: '#DDF2D1', // Pastel lime green (Sun Serum color)
+              borderColor: 'rgba(0,0,0,0.05)'
+            }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => window.open('https://smartstore.naver.com/drcohen/products/11963043290', '_blank', 'noopener,noreferrer')}
+            className="bg-white/95 text-black px-10 py-3.5 rounded-full text-[13px] font-bold tracking-tight shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-all duration-300 cursor-none border border-white/20 backdrop-blur-md"
+          >
+            선세럼 1+1 이벤트 바로가기
+          </motion.button>
         </div>
       </section>
 
@@ -742,10 +782,10 @@ const News: React.FC<PageProps> = ({ onNewsClick }) => (
 
     <div className="p-10 lg:p-20">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 border border-brand-stone/20">
-        {NEWS_ARTICLES.slice(0, 3).map((article) => (
+        {NEWS_ARTICLES.map((article) => (
           <div 
             key={article.id}
-            className="relative group overflow-hidden aspect-[3/4] border-r border-brand-stone/20 last:border-r-0"
+            className="relative group overflow-hidden aspect-[3/4] border-b border-brand-stone/20 md:odd:border-r md:even:border-r md:[&:nth-child(3n)]:border-r-0 pb-0.5"
           >
             {/* Background Image */}
             <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-110">
