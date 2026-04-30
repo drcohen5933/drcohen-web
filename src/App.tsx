@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Instagram, ArrowUp } from 'lucide-react';
 import promoImg from './promo.png';
-import homeMainImg from './m.png';
+import homeMainImg from '../m.png';
 import creamMainImg from './cream_main.png';
 
 // --- Types ---
