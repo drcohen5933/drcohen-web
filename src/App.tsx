@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Instagram, ArrowUp } from 'lucide-react';
 import promoImg from './promo.png';
-import homeMainImg from './m.png';
+import homeMainImg from '../m.png';
 import creamMainImg from './cream_main.png';
 
 // --- Types ---
@@ -138,7 +138,7 @@ const PRODUCTS: Product[] = [
     desc: '닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+',
     price: '15,000',
     originalPrice: '25,000',
-    discount: '40%',
+    discount: '1+1',
     image: '/sunmain.png',
     subImages: [
       '/sunsub_1.png', '/sunsub_2.png', '/sunsub_3.png', '/sunsub_4.png',
@@ -361,31 +361,40 @@ const Dropdown = ({ children }: { children: React.ReactNode }) => (
 );
 
 const Footer = () => (
-  <footer className="border-t border-brand-stone/40 px-10 py-16 flex flex-col md:flex-row items-center justify-between gap-12 bg-brand-card">
-    <div className="flex items-center gap-12">
-      <span className="font-bold text-[24px] tracking-widest text-brand-accent uppercase">Dr. Cohen</span>
-      <a 
-        href="https://www.instagram.com/dr.cohen_official?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-brand-stone hover:text-brand-accent transition-colors cursor-none"
-      >
-        <Instagram size={24} strokeWidth={1.5} />
-      </a>
+  <footer className="border-t border-brand-stone/40 px-10 py-20 flex flex-col md:flex-row items-start justify-between gap-12 bg-brand-card">
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center gap-8">
+        <span className="font-bold text-[24px] tracking-widest text-brand-accent uppercase">Dr. Cohen</span>
+        <a 
+          href="https://www.instagram.com/dr.cohen_official?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-brand-stone hover:text-brand-accent transition-colors cursor-none"
+        >
+          <Instagram size={20} strokeWidth={1.5} />
+        </a>
+      </div>
+      <div className="text-[11px] leading-relaxed text-brand-ink-light/70 space-y-1 font-medium">
+        <p>상호명 : 주식회사 마이센(MYCENN Co.,Ltd.)</p>
+        <p>대표 : 고성일</p>
+        <p>주소 : 서울특별시 금천구 가산디지털1로 204, 8층 804호(가산동, 반도아이비밸리)</p>
+        <p>사업자등록번호 : 862-87-03032 | 통신판매업신고 : 2023-서울금천-2588</p>
+        <p>국내비즈니스문의 : mycenn@naver.com</p>
+      </div>
     </div>
-    <div className="flex gap-12">
-      <a href="#" className="text-[11px] tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">개인정보처리방침</a>
-      <a href="#" className="text-[11px] tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">이용약관</a>
-      <a 
-        href="https://smartstore.naver.com/drcohen/qna?cp=1" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-[11px] tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none"
-      >
-        고객센터
-      </a>
+    <div className="flex flex-col items-end gap-6 md:mt-2">
+      <div className="flex gap-12">
+        <a 
+          href="https://smartstore.naver.com/drcohen/qna?cp=1" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-[11px] tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none"
+        >
+          고객센터
+        </a>
+      </div>
+      <span className="text-[10px] font-medium text-brand-stone uppercase opacity-60 tracking-widest">Copyright © 주식회사 마이센. All rights reserved.</span>
     </div>
-    <span className="text-[11px] font-medium text-brand-stone uppercase opacity-60 tracking-widest">© 2026 DR. Cohen. All Rights Reserved.</span>
   </footer>
 );
 
@@ -488,7 +497,7 @@ const Home: React.FC<PageProps> = ({ setPage, onProductClick }) => {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="40%" image="/sunmain.png" onClick={() => onProductClick?.('sun-serum')} />
+          <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="1+1" image="/sunmain.png" onClick={() => onProductClick?.('sun-serum')} />
           <BestItem line="EGF 라인" name="EGF 재생크림" price="48,000" originalPrice="58,000" discount="17%" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 크림\n[EGF 재생크림]"} image={creamMainImg} onClick={() => onProductClick?.('egf-cream')} />
           <BestItem line="EGF 라인" name="EGF 세럼" price="48,000" originalPrice="58,000" discount="17%" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 앰플 세럼\n[EGF 에센스]"} image="/serum_main.png" onClick={() => onProductClick?.('egf-serum')} />
         </div>
@@ -649,7 +658,7 @@ const Best: React.FC<PageProps> = ({ bestTab, setBestTab, onProductClick }) => {
         ) : (
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-              <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="40%" image="/sunmain.png" onClick={() => onProductClick?.('sun-serum')} />
+              <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="1+1" image="/sunmain.png" onClick={() => onProductClick?.('sun-serum')} />
             </div>
           </div>
         )}
