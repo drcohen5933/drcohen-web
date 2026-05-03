@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Instagram, ArrowUp } from 'lucide-react';
 import promoImg from './promo.png';
@@ -6,7 +7,6 @@ import homeMainImg from './m.png';
 import creamMainImg from './cream_main.png';
 
 // --- Types ---
-type Page = 'home' | 'best' | 'about' | 'news' | 'community' | 'product' | 'news-detail';
 
 interface NewsArticle {
   id: string;
@@ -202,17 +202,10 @@ const PRODUCTS: Product[] = [
 ];
 
 interface PageProps {
-  setPage?: (p: Page) => void;
   bestTab?: 'egf' | 'sun';
   setBestTab?: (tab: 'egf' | 'sun') => void;
   aboutTab?: 'story' | 'value';
   setAboutTab?: (tab: 'story' | 'value') => void;
-  selectedProductId?: string;
-  setSelectedProductId?: (id: string) => void;
-  onProductClick?: (id: string) => void;
-  selectedNewsId?: string;
-  onNewsClick?: (id: string) => void;
-  setSelectedNewsId?: (id: string) => void;
 }
 
 // --- Components ---
@@ -255,30 +248,30 @@ const CustomCursor = () => {
   );
 };
 
-const Navbar = ({ activePage, setPage, handleNavBest, handleNavAbout }: { activePage: Page, setPage: (p: Page) => void, handleNavBest: (tab: 'egf' | 'sun') => void, handleNavAbout: (tab: 'story' | 'value') => void }) => {
+const Navbar = ({ handleNavBest, handleNavAbout }: { handleNavBest: (tab: 'egf' | 'sun') => void, handleNavAbout: (tab: 'story' | 'value') => void }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const navigate = (p: Page) => {
-    setPage(p);
+  const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
 
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 h-[80px] bg-white/80 backdrop-blur-md">
-        <button 
-          onClick={() => setPage('home')}
+        <Link 
+          to="/"
           className="font-bold text-[28px] tracking-tight text-brand-accent cursor-none"
         >
           Dr. Cohen
-        </button>
+        </Link>
 
         <div className="flex items-center gap-12">
           <div className="hidden lg:flex items-center gap-10">
-            <button onClick={() => setPage('best')} className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">BEST</button>
-            <button onClick={() => setPage('about')} className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">About</button>
-            <button onClick={() => setPage('news')} className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">Notes</button>
-            <button onClick={() => setPage('community')} className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">Reviews</button>
+            <Link to="/best" className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">BEST</Link>
+            <Link to="/about" className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">About</Link>
+            <Link to="/notes" className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">Notes</Link>
+            <Link to="/reviews" className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">Reviews</Link>
           </div>
           
           <button 
@@ -303,11 +296,11 @@ const Navbar = ({ activePage, setPage, handleNavBest, handleNavAbout }: { active
           >
             <div className="flex flex-col gap-12">
               <div className="flex flex-col gap-4">
-                <button onClick={() => navigate('home')} className="font-bold text-[42px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">Home</button>
+                <Link to="/" onClick={handleLinkClick} className="font-bold text-[42px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">Home</Link>
               </div>
               
               <div className="flex flex-col gap-4">
-                <button onClick={() => navigate('best')} className="font-bold text-[42px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">BEST</button>
+                <Link to="/best" onClick={handleLinkClick} className="font-bold text-[42px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">BEST</Link>
                 <div className="flex gap-6 mt-1">
                   <button onClick={() => { handleNavBest('egf'); setIsMenuOpen(false); }} className="text-[11px] tracking-[0.2em] uppercase text-brand-stone hover:text-brand-accent cursor-none transition-colors">EGF 라인</button>
                   <button onClick={() => { handleNavBest('sun'); setIsMenuOpen(false); }} className="text-[11px] tracking-[0.2em] uppercase text-brand-stone hover:text-brand-accent cursor-none transition-colors">선세럼 라인</button>
@@ -315,7 +308,7 @@ const Navbar = ({ activePage, setPage, handleNavBest, handleNavAbout }: { active
               </div>
 
               <div className="flex flex-col gap-4">
-                <button onClick={() => navigate('about')} className="font-bold text-[48px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">About</button>
+                <Link to="/about" onClick={handleLinkClick} className="font-bold text-[48px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">About</Link>
                 <div className="flex gap-6 mt-1">
                   <button onClick={() => { handleNavAbout('story'); setIsMenuOpen(false); }} className="text-[11px] tracking-[0.2em] uppercase text-brand-stone hover:text-brand-accent cursor-none transition-colors">브랜드 스토리</button>
                   <button onClick={() => { handleNavAbout('value'); setIsMenuOpen(false); }} className="text-[11px] tracking-[0.2em] uppercase text-brand-stone hover:text-brand-accent cursor-none transition-colors">핵심 가치</button>
@@ -323,13 +316,13 @@ const Navbar = ({ activePage, setPage, handleNavBest, handleNavAbout }: { active
               </div>
 
               <div className="flex flex-col gap-4">
-                <button onClick={() => navigate('news')} className="font-bold text-[48px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">News</button>
-                <button onClick={() => navigate('news')} className="text-[12px] tracking-[0.2em] uppercase text-brand-stone hover:text-brand-accent text-left cursor-none transition-colors">COHEN NOTE</button>
+                <Link to="/notes" onClick={handleLinkClick} className="font-bold text-[48px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">News</Link>
+                <Link to="/notes" onClick={handleLinkClick} className="text-[12px] tracking-[0.2em] uppercase text-brand-stone hover:text-brand-accent text-left cursor-none transition-colors">COHEN NOTE</Link>
               </div>
 
               <div className="flex flex-col gap-4">
-                <button onClick={() => navigate('community')} className="font-bold text-[48px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">Community</button>
-                <button onClick={() => navigate('community')} className="text-[12px] tracking-[0.2em] uppercase text-brand-stone hover:text-brand-accent text-left cursor-none transition-colors">리뷰</button>
+                <Link to="/reviews" onClick={handleLinkClick} className="font-bold text-[48px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">Community</Link>
+                <Link to="/reviews" onClick={handleLinkClick} className="text-[12px] tracking-[0.2em] uppercase text-brand-stone hover:text-brand-accent text-left cursor-none transition-colors">리뷰</Link>
               </div>
             </div>
 
@@ -437,7 +430,13 @@ const BestItem = ({ line, name, desc, price, originalPrice, discount, image, onC
   </div>
 );
 
-const Home: React.FC<PageProps> = ({ setPage, onProductClick }) => {
+const Home: React.FC<PageProps> = () => {
+  const navigate = useNavigate();
+
+  const handleProductClick = (id: string) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 10 }}
@@ -497,9 +496,9 @@ const Home: React.FC<PageProps> = ({ setPage, onProductClick }) => {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="1+1" image="/sunmain.png" onClick={() => onProductClick?.('sun-serum')} />
-          <BestItem line="EGF 라인" name="EGF 재생크림" price="48,000" originalPrice="58,000" discount="17%" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 크림\n[EGF 재생크림]"} image={creamMainImg} onClick={() => onProductClick?.('egf-cream')} />
-          <BestItem line="EGF 라인" name="EGF 세럼" price="48,000" originalPrice="58,000" discount="17%" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 앰플 세럼\n[EGF 에센스]"} image="/serum_main.png" onClick={() => onProductClick?.('egf-serum')} />
+          <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="1+1" image="/sunmain.png" onClick={() => handleProductClick('sun-serum')} />
+          <BestItem line="EGF 라인" name="EGF 재생크림" price="48,000" originalPrice="58,000" discount="17%" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 크림\n[EGF 재생크림]"} image={creamMainImg} onClick={() => handleProductClick('egf-cream')} />
+          <BestItem line="EGF 라인" name="EGF 세럼" price="48,000" originalPrice="58,000" discount="17%" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 앰플 세럼\n[EGF 에센스]"} image="/serum_main.png" onClick={() => handleProductClick('egf-serum')} />
         </div>
       </section>
 
@@ -613,9 +612,14 @@ const ReviewCard = ({ author, tag, text, image }: { author: string, tag: string,
   </div>
 );
 
-const Best: React.FC<PageProps> = ({ bestTab, setBestTab, onProductClick }) => {
+const Best: React.FC<PageProps> = ({ bestTab, setBestTab }) => {
   const currentTab = bestTab || 'egf';
   const setTab = setBestTab || (() => {});
+  const navigate = useNavigate();
+
+  const handleProductClick = (id: string) => {
+    navigate(`/product/${id}`);
+  };
 
   return (
     <motion.div 
@@ -651,14 +655,14 @@ const Best: React.FC<PageProps> = ({ bestTab, setBestTab, onProductClick }) => {
         {currentTab === 'egf' ? (
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-              <BestItem line="EGF 라인" name="EGF 재생크림" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 크림\n[EGF 재생크림]"} price="48,000" originalPrice="58,000" discount="17%" image={creamMainImg} onClick={() => onProductClick?.('egf-cream')} />
-              <BestItem line="EGF 라인" name="EGF 세럼" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 앰플 세럼\n[EGF 에센스]"} price="48,000" originalPrice="58,000" discount="17%" image="/serum_main.png" onClick={() => onProductClick?.('egf-serum')} />
+              <BestItem line="EGF 라인" name="EGF 재생크림" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 크림\n[EGF 재생크림]"} price="48,000" originalPrice="58,000" discount="17%" image={creamMainImg} onClick={() => handleProductClick('egf-cream')} />
+              <BestItem line="EGF 라인" name="EGF 세럼" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 앰플 세럼\n[EGF 에센스]"} price="48,000" originalPrice="58,000" discount="17%" image="/serum_main.png" onClick={() => handleProductClick('egf-serum')} />
             </div>
           </div>
         ) : (
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-              <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="1+1" image="/sunmain.png" onClick={() => onProductClick?.('sun-serum')} />
+              <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="1+1" image="/sunmain.png" onClick={() => handleProductClick('sun-serum')} />
             </div>
           </div>
         )}
@@ -769,7 +773,10 @@ const ValueCard = ({ image, title, desc }: { image: string, title: string, desc:
   </div>
 );
 
-const News: React.FC<PageProps> = ({ onNewsClick }) => (
+const News: React.FC<PageProps> = () => {
+  const navigate = useNavigate();
+  
+  return (
   <motion.div 
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
@@ -812,7 +819,7 @@ const News: React.FC<PageProps> = ({ onNewsClick }) => (
 
               <div className="flex justify-center">
                 <button 
-                  onClick={() => onNewsClick?.(article.id)}
+                  onClick={() => navigate(`/notes/${article.id}`)}
                   className="bg-white text-brand-ink px-8 py-3 rounded-full text-[12px] tracking-[0.2em] uppercase font-medium hover:bg-brand-accent hover:text-white transition-all duration-300 shadow-xl cursor-none"
                 >
                   Read article
@@ -826,8 +833,11 @@ const News: React.FC<PageProps> = ({ onNewsClick }) => (
     <Footer />
   </motion.div>
 );
+}
 
-const NewsDetail: React.FC<PageProps> = ({ setPage, selectedNewsId, onNewsClick }) => {
+const NewsDetail: React.FC<PageProps> = () => {
+  const { id: selectedNewsId } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const article = NEWS_ARTICLES.find(a => a.id === selectedNewsId);
   
   if (!article) return null;
@@ -870,12 +880,12 @@ const NewsDetail: React.FC<PageProps> = ({ setPage, selectedNewsId, onNewsClick 
 
       <div className="max-w-4xl mx-auto px-10 py-24">
         <div className="flex items-center justify-between mb-20 pb-8 border-b border-brand-stone/20">
-          <button 
-            onClick={() => setPage?.('news')}
+          <Link 
+            to="/notes"
             className="text-[13px] tracking-[0.2em] uppercase text-brand-ink font-medium hover:text-brand-accent transition-colors cursor-none"
           >
             ← Back to notes
-          </button>
+          </Link>
           <p className="text-[13px] tracking-[0.1em] text-brand-stone">{article.date}</p>
         </div>
 
@@ -895,7 +905,7 @@ const NewsDetail: React.FC<PageProps> = ({ setPage, selectedNewsId, onNewsClick 
               <div 
                 key={other.id} 
                 onClick={() => {
-                  onNewsClick?.(other.id);
+                  navigate(`/notes/${other.id}`);
                   window.scrollTo(0, 0);
                 }}
                 className="group cursor-none"
@@ -1475,7 +1485,8 @@ const StatCard = ({ num, label }: { num: string, label: string }) => (
 
 // --- Main App ---
 
-const ProductDetail: React.FC<PageProps> = ({ setPage, selectedProductId }) => {
+const ProductDetail: React.FC<PageProps> = () => {
+  const { id: selectedProductId } = useParams<{ id: string }>();
   const product = PRODUCTS.find(p => p.id === selectedProductId);
   
   if (!product) return null;
@@ -1489,12 +1500,12 @@ const ProductDetail: React.FC<PageProps> = ({ setPage, selectedProductId }) => {
     >
       <div className="max-w-7xl mx-auto px-0 md:px-10 py-12 border-b border-brand-stone/40">
         <div className="px-10 md:px-0">
-          <button 
-            onClick={() => setPage?.('best')}
+          <Link 
+            to="/best"
             className="text-[12px] tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none mb-12"
           >
             ← BEST로 돌아가기
-          </button>
+          </Link>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-24 items-start">
@@ -1572,12 +1583,19 @@ const ProductDetail: React.FC<PageProps> = ({ setPage, selectedProductId }) => {
   );
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 export default function App() {
-  const [page, setPage] = useState<Page>('home');
   const [bestTab, setBestTab] = useState<'egf' | 'sun'>('egf');
   const [aboutTab, setAboutTab] = useState<'story' | 'value'>('story');
-  const [selectedProductId, setSelectedProductId] = useState<string>('');
-  const [selectedNewsId, setSelectedNewsId] = useState<string>('');
   const [showTopBtn, setShowTopBtn] = useState(false);
 
   useEffect(() => {
@@ -1600,37 +1618,45 @@ export default function App() {
     });
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [page]);
+  const BestWithTab = () => <Best bestTab={bestTab} setBestTab={setBestTab} />;
+  const AboutWithTab = () => <About aboutTab={aboutTab} setAboutTab={setAboutTab} />;
+
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <AppContent 
+        bestTab={bestTab} 
+        setBestTab={setBestTab} 
+        aboutTab={aboutTab} 
+        setAboutTab={setAboutTab} 
+        showTopBtn={showTopBtn} 
+        scrollToTop={scrollToTop} 
+      />
+    </BrowserRouter>
+  );
+}
+
+function AppContent({ bestTab, setBestTab, aboutTab, setAboutTab, showTopBtn, scrollToTop }: PageProps & { showTopBtn: boolean, scrollToTop: () => void }) {
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavBest = (tab: 'egf' | 'sun') => {
     setBestTab(tab);
-    setPage('best');
+    navigate('/best');
   };
 
   const handleNavAbout = (tab: 'story' | 'value') => {
     setAboutTab(tab);
-    setPage('about');
-  };
-
-  const handleProductClick = (id: string) => {
-    setSelectedProductId(id);
-    setPage('product');
-  };
-
-  const handleNewsClick = (id: string) => {
-    setSelectedNewsId(id);
-    setPage('news-detail');
+    navigate('/about');
   };
 
   return (
     <div className="min-h-screen cursor-none overflow-visible">
       <CustomCursor />
-      <Navbar activePage={page} setPage={setPage} handleNavBest={handleNavBest} handleNavAbout={handleNavAbout} />
+      <Navbar handleNavBest={handleNavBest} handleNavAbout={handleNavAbout} />
       
       <AnimatePresence>
-        {showTopBtn && page !== 'home' && (
+        {showTopBtn && location.pathname !== '/' && (
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -1646,13 +1672,15 @@ export default function App() {
 
       <main className="overflow-visible">
         <AnimatePresence mode="wait">
-          {page === 'home' && <Home key="home" setPage={setPage} onProductClick={handleProductClick} />}
-          {page === 'best' && <Best key="best" setPage={setPage} bestTab={bestTab} setBestTab={setBestTab} onProductClick={handleProductClick} />}
-          {page === 'about' && <About key="about" setPage={setPage} aboutTab={aboutTab} setAboutTab={setAboutTab} />}
-          {page === 'news' && <News key="news" setPage={setPage} onNewsClick={handleNewsClick} />}
-          {page === 'community' && <Community key="community" setPage={setPage} />}
-          {page === 'product' && <ProductDetail key="product" setPage={setPage} selectedProductId={selectedProductId} />}
-          {page === 'news-detail' && <NewsDetail key={`news-detail-${selectedNewsId}`} setPage={setPage} selectedNewsId={selectedNewsId} onNewsClick={handleNewsClick} />}
+          <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/best" element={<Best bestTab={bestTab} setBestTab={setBestTab} />} />
+            <Route path="/about" element={<About aboutTab={aboutTab} setAboutTab={setAboutTab} />} />
+            <Route path="/notes" element={<News />} />
+            <Route path="/notes/:id" element={<NewsDetail />} />
+            <Route path="/reviews" element={<Community />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+          </Routes>
         </AnimatePresence>
       </main>
     </div>
