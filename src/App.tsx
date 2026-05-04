@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link, useNavigate, useParams, useLocation
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Instagram, ArrowUp } from 'lucide-react';
 import promoImg from './promo.png';
-import homeMainImg from './m.png';
+import homeMainImg from './home.png';
 import creamMainImg from './cream_main.png';
 
 // --- Types ---
@@ -376,7 +376,7 @@ const Footer = () => (
       </div>
     </div>
     <div className="flex flex-col items-end gap-6 md:mt-2">
-      <div className="flex gap-12">
+      <div className="flex flex-col items-end gap-2">
         <a 
           href="https://smartstore.naver.com/drcohen/qna?cp=1" 
           target="_blank" 
@@ -384,6 +384,13 @@ const Footer = () => (
           className="text-[11px] tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none"
         >
           고객센터
+        </a>
+        <a
+          href="/llms.txt"
+          download
+          className="text-[11px] tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none"
+        >
+          닥터코헨 AI 지침서
         </a>
       </div>
       <span className="text-[10px] font-medium text-brand-stone uppercase opacity-60 tracking-widest">Copyright © 주식회사 마이센. All rights reserved.</span>
@@ -463,7 +470,7 @@ const Home: React.FC<PageProps> = () => {
 
           {/* Large Typography at Bottom Right */}
           <div className="absolute bottom-10 right-10 text-right">
-            <h1 className="font-black text-[12vw] lg:text-[8vw] leading-none tracking-tighter text-[#749474] uppercase">
+            <h1 className="font-black text-[12vw] lg:text-[8vw] leading-none tracking-tighter text-[#800020] uppercase">
               Dr. Cohen.
             </h1>
           </div>
@@ -472,19 +479,19 @@ const Home: React.FC<PageProps> = () => {
 
       {/* Marquee */}
       <div className="border-y border-brand-stone/20 py-6 overflow-hidden bg-white cursor-none">
-        <a 
-          href="https://smartstore.naver.com/drcohen/products/11963043290"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex whitespace-nowrap animate-marquee group cursor-none"
-        >
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="flex gap-[40px] pr-[40px]">
-              <MarqueeItem text="선세럼 1+1 이벤트 바로가기" />
-              <MarqueeItem text="선세럼 1+1 이벤트 바로가기" />
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="flex gap-[60px] pr-[60px]">
+              <MarqueeItem text="저자극" />
+              <MarqueeItem text="히알루론" />
+              <MarqueeItem text="EGF" />
+              <MarqueeItem text="세포 재생" />
+              <MarqueeItem text="미백" />
+              <MarqueeItem text="이지 액티브+ 프로틴" />
+              <MarqueeItem text="닥터코헨" />
             </div>
           ))}
-        </a>
+        </div>
       </div>
 
       {/* Featured Products */}
