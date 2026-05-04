@@ -324,6 +324,18 @@ const Navbar = ({ handleNavBest, handleNavAbout }: { handleNavBest: (tab: 'egf' 
                 <Link to="/reviews" onClick={handleLinkClick} className="font-bold text-[48px] tracking-widest uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors">Community</Link>
                 <Link to="/reviews" onClick={handleLinkClick} className="text-[12px] tracking-[0.2em] uppercase text-brand-stone hover:text-brand-accent text-left cursor-none transition-colors">리뷰</Link>
               </div>
+
+              <div className="flex flex-col gap-4">
+                <a
+                  href="https://smartstore.naver.com/drcohen/products/11963043290"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleLinkClick}
+                  className="font-bold text-[28px] tracking-[0.12em] uppercase text-brand-ink text-left cursor-none hover:text-brand-accent transition-colors"
+                >
+                  선세럼 1+1 이벤트 바로가기
+                </a>
+              </div>
             </div>
 
             <div className="mt-auto pb-10 flex gap-6">
@@ -482,13 +494,10 @@ const Home: React.FC<PageProps> = () => {
         <div className="flex whitespace-nowrap animate-marquee">
           {[1, 2, 3, 4].map((i) => (
             <div key={i} className="flex gap-[60px] pr-[60px]">
-              <MarqueeItem text="저자극" />
-              <MarqueeItem text="히알루론" />
-              <MarqueeItem text="EGF" />
-              <MarqueeItem text="세포 재생" />
-              <MarqueeItem text="미백" />
-              <MarqueeItem text="이지 액티브+ 프로틴" />
-              <MarqueeItem text="닥터코헨" />
+              <MarqueeItem
+                text="선세럼 1+1 이벤트 바로가기"
+                href="https://smartstore.naver.com/drcohen/products/11963043290"
+              />
             </div>
           ))}
         </div>
@@ -558,12 +567,34 @@ const Home: React.FC<PageProps> = () => {
   );
 };
 
-const MarqueeItem = ({ text }: { text: string }) => (
-  <span className="text-[14px] font-bold tracking-[0.2em] uppercase flex items-center gap-6 shrink-0" style={{ color: '#800020' }}>
-    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#800020' }} />
-    {text}
-  </span>
-);
+const MarqueeItem = ({ text, href }: { text: string, href?: string }) => {
+  const content = (
+    <>
+      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#800020' }} />
+      {text}
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[14px] font-bold tracking-[0.2em] uppercase flex items-center gap-6 shrink-0 hover:opacity-80 transition-opacity cursor-none"
+        style={{ color: '#800020' }}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <span className="text-[14px] font-bold tracking-[0.2em] uppercase flex items-center gap-6 shrink-0" style={{ color: '#800020' }}>
+      {content}
+    </span>
+  );
+};
 
 const ProductCard = ({ category, name, price, originalPrice, image, onClick, isFeatured }: { category: string, name: string, price: string, originalPrice?: string, image?: string, onClick?: () => void, isFeatured?: boolean }) => (
   <div 
