@@ -491,13 +491,17 @@ const Home: React.FC<PageProps> = () => {
 
       {/* Marquee */}
       <div className="border-y border-brand-stone/20 py-6 overflow-hidden bg-white cursor-none">
-        <div className="flex whitespace-nowrap animate-marquee">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="flex gap-[60px] pr-[60px]">
-              <MarqueeItem
-                text="선세럼 1+1 이벤트 바로가기"
-                href="https://smartstore.naver.com/drcohen/products/11963043290"
-              />
+        <div className="flex w-max animate-marquee">
+          {[1, 2].map((track) => (
+            <div key={track} className="flex items-center shrink-0 whitespace-nowrap">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={`${track}-${i}`} className="pr-[60px]">
+                  <MarqueeItem
+                    text="선세럼 1+1 이벤트 바로가기"
+                    href="https://smartstore.naver.com/drcohen/products/11963043290"
+                  />
+                </div>
+              ))}
             </div>
           ))}
         </div>
