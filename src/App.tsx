@@ -14,12 +14,71 @@ interface NewsArticle {
   date: string;
   category: string;
   excerpt: string;
+  metaDescription?: string;
   content: string[];
   image: string;
   verticalLabel: string;
+  faq?: Array<{ question: string; answer: string }>;
 }
 
+const parseKoreanDate = (date: string): number => {
+  const match = date.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
+  if (!match) return 0;
+
+  const [, year, month, day] = match;
+  return new Date(Number(year), Number(month) - 1, Number(day)).getTime();
+};
+
+const SUN_SERUM_NOTE_ID = 'sun-serum-evolution';
+
+const getNewsArticlesSortedByDateDesc = (articles: NewsArticle[]): NewsArticle[] => {
+  const sorted = [...articles].sort((a, b) => parseKoreanDate(b.date) - parseKoreanDate(a.date));
+  const pinnedIndex = sorted.findIndex((article) => article.id === SUN_SERUM_NOTE_ID);
+
+  if (pinnedIndex === -1 || sorted.length < 2) {
+    return sorted;
+  }
+
+  const [pinnedArticle] = sorted.splice(pinnedIndex, 1);
+  sorted.splice(sorted.length - 1, 0, pinnedArticle);
+  return sorted;
+};
+
 const NEWS_ARTICLES: NewsArticle[] = [
+  {
+    id: 'egf-recovery-mechanism',
+    title: 'EGF가 이끄는\n피부 회복의 과학적 메커니즘',
+    date: '2026년 5월 6일',
+    category: 'COHEN NOTE — 2026.05',
+    excerpt: '30대 중반부터 달라지는 피부 밀도 고민에 답하다. EGF PROTEIN CREAM의 세포 재생, 장벽 강화, 밀도 회복 메커니즘을 과학적으로 정리합니다.',
+    metaDescription: 'EGF가 이끄는 피부 회복의 과학적 메커니즘: 30대 중반 이후 피부 밀도·탄력 저하 원인과 EGF PROTEIN CREAM의 재생·장벽 강화·밀도 회복 작용, 그리고 5월 선물 추천까지 한 번에 확인하세요.',
+    image: '/note_egf_recovery_mechanism.png',
+    verticalLabel: 'Mechanism',
+    content: [
+      '30대 중반부터 느껴지는 피부 밀도의 차이, 왜 생길까요?\n\n예전처럼 피부가 탄탄하게 받쳐주지 않고 베이스 메이크업이 들뜨기 시작한다면, 단순 보습 부족이 아니라 피부 구조의 밀도 저하 신호일 수 있습니다. 피부는 나이와 환경 요인에 따라 재생 속도가 느려지고, 이 변화는 탄력 저하와 결 거칠음으로 먼저 나타납니다.',
+      '핵심 성분 ① EGF(표피세포성장인자)란?\n\nEGF(Epidermal Growth Factor)는 피부 세포의 재생과 분열을 촉진하는 단백질 신호 인자입니다. 건강한 턴오버와 손상 회복 과정에서 중요한 역할을 하지만, 나이가 들수록 EGF 분비량이 감소하는 경향이 있어 피부 밀도와 탄력이 함께 떨어지기 쉽습니다.',
+      '핵심 성분 ② EGF + 단백질 컴플렉스의 시너지\n\nEGF PROTEIN CREAM은 EGF와 단백질 컴플렉스를 함께 설계해 피부 본연의 회복 메커니즘을 지원합니다. 단순히 겉을 코팅하는 방식이 아니라, 피부 구조가 스스로 균형을 되찾도록 돕는 것이 핵심입니다.',
+      'EGF PROTEIN CREAM의 작용 메커니즘\n\n1) 세포 재생 촉진: 느려진 피부 턴오버 리듬을 보완해 매끄러운 피부 결 회복에 도움\n2) 피부 장벽 강화: 외부 자극에 흔들리기 쉬운 피부를 안정적으로 보호\n3) 밀도 회복: 탄력이 떨어진 피부의 지지 구조를 탄탄하게 관리\n4) 민감성 피부 적합: 자극 부담을 줄인 성분 설계로 예민한 피부도 사용 가능',
+      '누가 사용하면 좋을까요?\n\n- 30대 중반 이후, 피부 밀도 저하가 체감되는 경우\n- 메이크업이 쉽게 들뜨고 피부 결이 고르지 않게 보이는 경우\n- 탄력 저하와 장벽 약화가 함께 느껴지는 경우\n- 민감성 피부지만 기능성 케어가 필요한 경우',
+      '5월 가정의 달 선물 추천\n\n어버이날·스승의날처럼 감사의 마음을 전하는 시즌에는, 실용성과 만족도를 함께 갖춘 스킨케어 선물이 좋은 선택이 됩니다. EGF PROTEIN CREAM은 매일 사용하는 루틴형 제품으로 피부 고민(탄력·밀도·장벽 케어)에 직접적으로 닿아 선물 만족도가 높은 편입니다.',
+      '루틴 제안\n\n세안 후 토너 → 세럼 → EGF PROTEIN CREAM 순으로, 크림 단계에서 마무리해 주세요. 특히 저녁 루틴에서 충분한 양을 사용하면 밤 동안 피부 회복 환경을 안정적으로 유지하는 데 도움이 됩니다.',
+      '정리하며\n\n피부 회복의 핵심은 단기적인 촉촉함보다 구조적 밀도 관리에 있습니다. EGF와 단백질 컴플렉스 기반의 케어를 4~8주 이상 꾸준히 이어가면, 피부 본연의 힘이 회복되는 변화를 보다 선명하게 체감할 수 있습니다.'
+    ],
+    faq: [
+      {
+        question: 'EGF는 어떤 피부 타입에 적합한가요?',
+        answer: '피부 밀도가 낮아지기 시작하는 30대 중반 이상, 화장이 들뜨거나 탄력이 떨어진 피부에 특히 효과적입니다. 민감성 피부도 사용 가능한 성분 설계입니다.'
+      },
+      {
+        question: 'EGF 크림은 루틴 어느 단계에서 사용하나요?',
+        answer: '세럼 후 마지막 크림 단계에서 사용합니다. 피부 장벽을 덮어주는 역할을 하므로 가장 마지막에 발라주세요.'
+      },
+      {
+        question: '효과를 체감하려면 얼마나 걸리나요?',
+        answer: '세포 재생 사이클을 고려하면 최소 4~8주 이상 꾸준히 사용하셔야 밀도 변화를 체감하실 수 있습니다.'
+      }
+    ]
+  },
   {
     id: 'egf-regeneration',
     title: '민감성 피부를 위한\n에몰리언트의 진실',
@@ -138,7 +197,7 @@ const PRODUCTS: Product[] = [
     desc: '닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+',
     price: '15,000',
     originalPrice: '25,000',
-    discount: '1+1',
+    discount: '40%',
     image: '/sunmain.png',
     subImages: [
       '/sunsub_1.png', '/sunsub_2.png', '/sunsub_3.png', '/sunsub_4.png',
@@ -491,17 +550,16 @@ const Home: React.FC<PageProps> = () => {
 
       {/* Marquee */}
       <div className="border-y border-brand-stone/20 py-6 overflow-hidden bg-white cursor-none">
-        <div className="flex w-max animate-marquee">
-          {[1, 2].map((track) => (
-            <div key={track} className="flex items-center shrink-0 whitespace-nowrap">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={`${track}-${i}`} className="pr-[60px]">
-                  <MarqueeItem
-                    text="선세럼 1+1 이벤트 바로가기"
-                    href="https://smartstore.naver.com/drcohen/products/11963043290"
-                  />
-                </div>
-              ))}
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="flex gap-[60px] pr-[60px]">
+              <MarqueeItem text="저자극" />
+              <MarqueeItem text="히알루론" />
+              <MarqueeItem text="EGF" />
+              <MarqueeItem text="세포 재생" />
+              <MarqueeItem text="미백" />
+              <MarqueeItem text="이지 액티브+ 프로틴" />
+              <MarqueeItem text="닥터코헨" />
             </div>
           ))}
         </div>
@@ -516,7 +574,7 @@ const Home: React.FC<PageProps> = () => {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="1+1" image="/sunmain.png" onClick={() => handleProductClick('sun-serum')} />
+          <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="40%" image="/sunmain.png" onClick={() => handleProductClick('sun-serum')} />
           <BestItem line="EGF 라인" name="EGF 재생크림" price="48,000" originalPrice="58,000" discount="17%" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 크림\n[EGF 재생크림]"} image={creamMainImg} onClick={() => handleProductClick('egf-cream')} />
           <BestItem line="EGF 라인" name="EGF 세럼" price="48,000" originalPrice="58,000" discount="17%" desc={"닥터코헨 이지 액티브 플러스 프로틴 기미 앰플 세럼\n[EGF 에센스]"} image="/serum_main.png" onClick={() => handleProductClick('egf-serum')} />
         </div>
@@ -571,31 +629,11 @@ const Home: React.FC<PageProps> = () => {
   );
 };
 
-const MarqueeItem = ({ text, href }: { text: string, href?: string }) => {
-  const content = (
-    <>
-      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#800020' }} />
-      {text}
-    </>
-  );
-
-  if (href) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-[14px] font-bold tracking-[0.2em] uppercase flex items-center gap-6 shrink-0 hover:opacity-80 transition-opacity cursor-none"
-        style={{ color: '#800020' }}
-      >
-        {content}
-      </a>
-    );
-  }
-
+const MarqueeItem = ({ text }: { text: string }) => {
   return (
     <span className="text-[14px] font-bold tracking-[0.2em] uppercase flex items-center gap-6 shrink-0" style={{ color: '#800020' }}>
-      {content}
+      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#800020' }} />
+      {text}
     </span>
   );
 };
@@ -704,7 +742,7 @@ const Best: React.FC<PageProps> = ({ bestTab, setBestTab }) => {
         ) : (
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-              <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="1+1" image="/sunmain.png" onClick={() => handleProductClick('sun-serum')} />
+              <BestItem line="선세럼 라인" name="히알루 시카 워터리 선세럼" desc="닥터코헨 히알루 시카 워터리 선세럼 50ml 끈적임없는 수분 진정 선케어 SPF50+/PA4+" price="15,000" originalPrice="25,000" discount="40%" image="/sunmain.png" onClick={() => handleProductClick('sun-serum')} />
             </div>
           </div>
         )}
@@ -817,6 +855,7 @@ const ValueCard = ({ image, title, desc }: { image: string, title: string, desc:
 
 const News: React.FC<PageProps> = () => {
   const navigate = useNavigate();
+  const sortedNewsArticles = getNewsArticlesSortedByDateDesc(NEWS_ARTICLES);
   
   return (
   <motion.div 
@@ -835,7 +874,7 @@ const News: React.FC<PageProps> = () => {
 
     <div className="p-10 lg:p-20">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 border border-brand-stone/20">
-        {NEWS_ARTICLES.map((article) => (
+        {sortedNewsArticles.map((article) => (
           <div 
             key={article.id}
             className="relative group overflow-hidden aspect-[3/4] border-b border-brand-stone/20 md:odd:border-r md:even:border-r md:[&:nth-child(3n)]:border-r-0 pb-0.5"
@@ -881,7 +920,23 @@ const NewsDetail: React.FC<PageProps> = () => {
   const { id: selectedNewsId } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const article = NEWS_ARTICLES.find(a => a.id === selectedNewsId);
+  const sortedNewsArticles = getNewsArticlesSortedByDateDesc(NEWS_ARTICLES);
   
+  useEffect(() => {
+    if (!article) return;
+
+    document.title = `${article.title.replace('\n', ' ')} | Dr. Cohen`;
+
+    const description = article.metaDescription || article.excerpt;
+    let metaDescriptionTag = document.querySelector('meta[name="description"]');
+    if (!metaDescriptionTag) {
+      metaDescriptionTag = document.createElement('meta');
+      metaDescriptionTag.setAttribute('name', 'description');
+      document.head.appendChild(metaDescriptionTag);
+    }
+    metaDescriptionTag.setAttribute('content', description);
+  }, [article]);
+
   if (!article) return null;
 
   return (
@@ -939,11 +994,25 @@ const NewsDetail: React.FC<PageProps> = () => {
           ))}
         </div>
 
+        {article.faq && article.faq.length > 0 && (
+          <section className="mb-32 border-t border-brand-stone/20 pt-16">
+            <h3 className="text-[24px] font-bold mb-10">FAQ</h3>
+            <div className="flex flex-col gap-10">
+              {article.faq.map((item, idx) => (
+                <div key={`${item.question}-${idx}`} className="border-b border-brand-stone/20 pb-8">
+                  <p className="text-[18px] font-bold text-brand-ink mb-4">Q. {item.question}</p>
+                  <p className="text-[17px] text-brand-ink-light leading-[1.9]">A. {item.answer}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Related Section */}
         <div className="border-t border-brand-stone/20 pt-20">
           <h3 className="text-[24px] font-bold mb-12">Other Research Notes</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {NEWS_ARTICLES.filter(a => a.id !== article.id).slice(0, 2).map(other => (
+            {sortedNewsArticles.filter(a => a.id !== article.id).slice(0, 2).map(other => (
               <div 
                 key={other.id} 
                 onClick={() => {
