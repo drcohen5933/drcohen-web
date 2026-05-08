@@ -19,3 +19,11 @@ declare module "*.svg" {
   const value: string;
   export default value;
 }
+
+interface Window {
+  gtag?: (
+    command: 'event' | 'config' | 'js',
+    eventNameOrId: string | Date,
+    params?: Record<string, unknown>
+  ) => void;
+}

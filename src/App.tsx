@@ -1599,6 +1599,11 @@ const StatCard = ({ num, label }: { num: string, label: string }) => (
 const ProductDetail: React.FC<PageProps> = () => {
   const { id: selectedProductId } = useParams<{ id: string }>();
   const product = PRODUCTS.find(p => p.id === selectedProductId);
+  const productNameById: Record<string, string> = {
+    'egf-cream': 'EGF 재생크림',
+    'egf-serum': 'EGF 세럼',
+    'sun-serum': '히알루 시카 워터리 선세럼'
+  };
   
   if (!product) return null;
 
@@ -1636,6 +1641,15 @@ const ProductDetail: React.FC<PageProps> = () => {
             
             <button 
               onClick={() => {
+                const trackedProductName = productNameById[product.id];
+                if (trackedProductName && typeof window.gtag === 'function') {
+                  window.gtag('event', 'naver_purchase_click', {
+                    button_name: '네이버에서 구매하기',
+                    category: 'best',
+                    product_name: trackedProductName
+                  });
+                }
+
                 if (product.id === 'egf-cream') {
                   window.open('https://smartstore.naver.com/drcohen/products/10100254748', '_blank', 'noopener,noreferrer');
                 } else if (product.id === 'egf-serum') {
