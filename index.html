@@ -27,13 +27,12 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <div id="google_translate_element" style="position:fixed; top:16px; right:16px; z-index:9999;"></div>
+    <div id="google_translate_element" style="display:none"></div>
     <script>
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({
           pageLanguage: 'ko',
-          includedLanguages: 'en,zh-CN',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          includedLanguages: 'en,zh-CN'
         }, 'google_translate_element');
       }
     </script>

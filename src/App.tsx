@@ -267,7 +267,67 @@ interface PageProps {
   setAboutTab?: (tab: 'story' | 'value') => void;
 }
 
+type TranslateLang = 'ko' | 'en' | 'zh-CN';
+
+function getTranslateLangFromCookie(): TranslateLang {
+  const match = document.cookie.match(/googtrans=\/ko\/([^;]*)/);
+  if (!match) return 'ko';
+  const code = match[1].trim();
+  if (code === '' || code === 'auto') return 'ko';
+  if (code === 'en') return 'en';
+  if (code === 'zh-CN') return 'zh-CN';
+  return 'ko';
+}
+
+function changeLanguage(lang: TranslateLang) {
+  const cookieValue = lang === 'ko' ? '' : lang;
+  document.cookie = `googtrans=/ko/${cookieValue}; path=/`;
+  location.reload();
+}
+
 // --- Components ---
+
+const LanguageToggle = () => {
+  const [active, setActive] = useState<TranslateLang>('ko');
+
+  useEffect(() => {
+    setActive(getTranslateLangFromCookie());
+  }, []);
+
+  const langs: { code: TranslateLang; label: string }[] = [
+    { code: 'ko', label: 'KO' },
+    { code: 'en', label: 'EN' },
+    { code: 'zh-CN', label: 'ZH' },
+  ];
+
+  return (
+    <div
+      className="flex items-center gap-1.5 text-[12px] tracking-[0.12em]"
+      role="group"
+      aria-label="언어 선택"
+    >
+      <span className="mr-0.5 select-none shrink-0" aria-hidden>
+        🌐
+      </span>
+      {langs.map((item, i) => (
+        <React.Fragment key={item.code}>
+          {i > 0 && <span className="text-brand-stone/40 select-none px-0.5">/</span>}
+          <button
+            type="button"
+            onClick={() => changeLanguage(item.code)}
+            className={`cursor-none transition-colors px-0.5 ${
+              active === item.code
+                ? 'font-bold text-brand-accent'
+                : 'font-medium text-brand-ink-light hover:text-brand-accent'
+            }`}
+          >
+            {item.label}
+          </button>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
 
 const CustomCursor = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -325,14 +385,16 @@ const Navbar = ({ handleNavBest, handleNavAbout }: { handleNavBest: (tab: 'egf' 
           Dr. Cohen
         </Link>
 
-        <div className="flex items-center gap-12">
+        <div className="flex items-center gap-6 lg:gap-10">
           <div className="hidden lg:flex items-center gap-10">
             <Link to="/best" className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">BEST</Link>
             <Link to="/about" className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">About</Link>
             <Link to="/notes" className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">Notes</Link>
             <Link to="/reviews" className="text-[14px] font-bold tracking-[0.2em] uppercase text-brand-ink-light hover:text-brand-accent transition-colors cursor-none">Reviews</Link>
           </div>
-          
+
+          <LanguageToggle />
+
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden flex flex-col gap-1.5 w-6 cursor-none"
@@ -394,6 +456,11 @@ const Navbar = ({ handleNavBest, handleNavAbout }: { handleNavBest: (tab: 'egf' 
                 >
                   선세럼 1+1 이벤트 바로가기
                 </a>
+              </div>
+
+              <div className="flex flex-col gap-3 pt-2">
+                <p className="text-[11px] tracking-[0.2em] uppercase text-brand-stone">Language</p>
+                <LanguageToggle />
               </div>
             </div>
 
