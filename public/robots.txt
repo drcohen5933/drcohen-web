@@ -1,0 +1,16 @@
+# DR.COHEN
+#
+# llms.txt (LLM/AI용 정책·지식 파일): https://drcohen.co.kr/llms.txt
+# AI 전용 사이트: https://www.drcohen-ai.com
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
